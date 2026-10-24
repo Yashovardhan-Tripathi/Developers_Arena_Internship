@@ -17,9 +17,8 @@
 8. [User and moderator manual](#8-user-and-moderator-manual)
 9. [Visual documentation](#9-visual-documentation)
 10. [Testing and validation evidence](#10-testing-and-validation-evidence)
-11. [Deployment guide](#11-deployment-guide)
-12. [Limitations and future enhancements](#12-limitations-and-future-enhancements)
-13. [Submission checklist and references](#13-submission-checklist-and-references)
+11. [Limitations and future enhancements](#11-limitations-and-future-enhancements)
+12. [Submission checklist and references](#12-submission-checklist-and-references)
 
 ## 1. Project overview
 
@@ -36,7 +35,7 @@ The project demonstrates a complete social workflow: create an account, build a 
 - Implement friend requests, acceptance, rejection, cancellation, and removing friends.
 - Deliver notifications through a saved inbox and authenticated WebSockets.
 - Apply the same privacy and ownership rules to website, API, and image requests.
-- Supply reproducible installation, automated checks, screenshots, and deployment instructions.
+- Supply reproducible installation, automated checks, screenshots, and user instructions.
 
 ### Selected project option
 
@@ -181,7 +180,7 @@ The existing administrator `yashovardhan` remains unchanged. Demo identities are
 | Ayush Seth | `AyushSeth69` | Nashik | Reel Maker |
 | Ishita Tripathi | `ishu` | Kanpur | Studying |
 
-For an original local database, run `manage.py personalize_demo` before `seed_demo`. The conversion retains existing user IDs, passwords and connections, updates known demo stories/comments, and saves a private ignored SQLite backup. It refuses username conflicts and staff-account changes. Fresh databases can use `seed_demo` directly. Submitted emails are stored in the approved demo-data module and local account records; these commands do not send email. Historical names remain only in the unmodified original brief and conversion compatibility data.
+For an original local database, run `manage.py personalize_demo` before `seed_demo`. The conversion retains existing user IDs, passwords and connections, updates known demo stories/comments, and saves a private ignored SQLite backup. It refuses username conflicts and staff-account changes. Fresh databases can use `seed_demo` directly. Submitted emails are stored in the approved demo-data module and local account records; these commands do not send email. Historical names remain only in the conversion compatibility data.
 
 
 ### Configuration reference
@@ -233,7 +232,7 @@ Social Media Platform Django/
 ├── static/                      CSS, JavaScript and vendored Bootstrap
 ├── tests/test_platform.py       Platform and WebSocket automated tests
 ├── scripts/verify.py            Repeatable verification and evidence generation
-├── docs/                        Guides, project brief, evidence and screenshots
+├── docs/                        Guides, evidence and screenshots
 ├── .github/workflows/tests.yml  Supplied continuous-integration workflow
 ├── requirements.txt             Dependency ranges
 ├── requirements.lock.txt        Exact dependency versions
@@ -655,75 +654,8 @@ Expected denial responses such as 400, 401, 403 and 404 appear in test output be
 - The CI workflow is included; no GitHub Actions run is established by local tests.
 - No load-test throughput, code-coverage percentage, penetration-test result or public deployment is claimed.
 
-## 11. Deployment guide
 
-### Deployment model and status
-
-The supplied configuration targets a long-running Daphne ASGI service with PostgreSQL, Redis and private S3-compatible media. This supports both HTTP and WebSockets. Public deployment is pending. The following is a release procedure based on the repository configuration; platform dashboard steps and runtime compatibility must be confirmed when a deployment is performed.
-
-### Local Docker alternative
-
-On a machine with Docker Compose installed:
-
-```powershell
-docker compose up --build
-docker compose exec web python manage.py createsuperuser
-```
-
-Compose supplies PostgreSQL 17, Redis 7 and the application, plus named database/media volumes. The web service runs migrations and starts Daphne on port 8000. It is a development setup using development credentials and `DEBUG=True`. Container execution is not included in the recorded local verification.
-
-### Production preparation
-
-1. Provision a PostgreSQL database, Redis service, and private S3-compatible bucket.
-2. Store production credentials in the hosting environment; do not upload the development `.env` or SQLite database as production data.
-3. Set the variables below using real provisioned values.
-4. Build from the supplied Dockerfile. It installs locked dependencies, collects static files, and runs as an unprivileged user.
-5. Back up any existing database and run migrations once per release.
-6. Start Daphne behind the host's HTTPS ingress, preserving WebSocket upgrades.
-7. Create the production administrator through an authenticated service shell.
-8. Complete the live checks below before declaring the release ready.
-
-| Variable | Required production configuration |
-| --- | --- |
-| `DEBUG` | `False` |
-| `SECRET_KEY` | Unique generated value, at least 50 characters |
-| `DATABASE_URL` | Real PostgreSQL connection URL |
-| `REDIS_URL` | Real private Redis URL shared by application processes |
-| `ALLOWED_HOSTS` | Exact application hostname and any required health-probe hostname |
-| `CSRF_TRUSTED_ORIGINS` | Exact HTTPS application origins |
-| `SECURE_SSL_REDIRECT` | `True` |
-| `USE_S3` | `True` |
-| `AWS_STORAGE_BUCKET_NAME` | Private media bucket |
-| `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` | Appropriately scoped secret credentials |
-| `AWS_S3_REGION_NAME` | Bucket region |
-| `AWS_S3_ENDPOINT_URL` | Provider endpoint if required |
-
-The private bucket needs the operations used by the storage backend, including object read/write/delete and appropriate listing permissions. Keep it private: image access goes through the application. Avoid adding an unrestricted media route at the proxy. Local files on an ephemeral hosting filesystem cannot provide durable production media.
-
-### Supplied Railway configuration
-
-The repository includes a Dockerfile build, a `python manage.py migrate --noinput` pre-deploy command, `/health/` checks, a restart policy, and Daphne startup using the assigned `PORT`.
-
-For a Railway release, connect the source project and select this directory as its root if the repository contains other projects. Add PostgreSQL and Redis, configure the bucket and secrets, and assign the application domain. The existing guide specifies `healthcheck.railway.app` alongside the application hostname in `ALLOWED_HOSTS`; confirm the provider's probe requirements during release. `/health/` is exempt from HTTPS redirection for internal probes.
-
-The supplied [Procfile](../Procfile) also describes a release migration and Daphne web process for a compatible host. [deployment.md](deployment.md) contains the extended Railway and Heroku guidance and reference links. No deployment or service provisioning was performed for this documentation task.
-
-### Live release acceptance checks
-
-- Run `manage.py check --deploy` with actual production variables and confirm no migration drift.
-- Confirm HTTPS and `/health/` with working database and configured Redis.
-- Register/sign in and verify static CSS/JS, form submissions, logout and CSRF handling.
-- Use two accounts to post, like, comment, request/accept friendship and follow.
-- Confirm that another browser receives a live WebSocket notification and the inbox retains the event.
-- Check friends/private/Only me restrictions through pages, API, search and direct image URLs.
-- Upload an image, redeploy, and confirm it persists and retains access restrictions.
-- Review a report as staff; verify hidden content disappears.
-- Confirm API token use, revocation and password-change invalidation over TLS.
-- Check logs, monitoring, backup/restore procedures and storage permissions.
-
-For multiple instances, share PostgreSQL, Redis and private storage. Monitor errors, health, slow queries, storage growth and socket connections. Back up before schema changes; only roll back code after checking migration compatibility. Load capacity requires separate measurement.
-
-## 12. Limitations and future enhancements
+## 11. Limitations and future enhancements
 
 | Current boundary | Possible future enhancement |
 | --- | --- |
@@ -738,7 +670,7 @@ For multiple instances, share PostgreSQL, Redis and private storage. Monitor err
 
 These items are future work, not completed capabilities. No business adoption, capacity, uptime or production-security certification is claimed.
 
-## 13. Submission checklist and references
+## 12. Submission checklist and references
 
 ### Required documentation coverage
 
@@ -751,17 +683,14 @@ These items are future work, not completed capabilities. No business adoption, c
 | Technical Details | Sections 5–6: architecture, relationships, data structures and algorithms |
 | Testing Evidence | Section 10: named cases, reproducible commands and linked validation output |
 | API Documentation | Section 7: authentication, endpoints, fields, examples, errors and WebSockets |
-| Deployment Guide | Section 11: infrastructure, environment, startup and live acceptance checks |
 | User Manual | Section 8: member and moderator instructions |
 
 ### Supporting project documents
 
 - [Project README](../README.md)
-- [Original project brief](project-brief.txt)
 - [Requirement mapping](requirements.md)
 - [Detailed architecture and security](architecture.md)
 - [Detailed API reference](api.md)
-- [Full deployment guide](deployment.md)
 - [Full user manual](user-manual.md)
 - [Testing record](testing.md)
 - [Actual validation output](validation.txt)

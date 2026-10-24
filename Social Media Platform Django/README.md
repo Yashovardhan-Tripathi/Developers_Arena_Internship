@@ -1,6 +1,6 @@
 # Gather · Social Media Platform
 
-A complete Django social platform for everyday stories and meaningful connections. Built from the supplied project brief with a responsive Bootstrap interface, a mobile-ready REST API, and live WebSocket notifications.
+A complete Django social platform for everyday stories and meaningful connections. Built with a responsive Bootstrap interface, a mobile-ready REST API, and live WebSocket notifications.
 
 **Status:** implemented and verified locally. Cloud deployment is pending at the user's request. Docker and Railway configuration are included; no live production URL or container-runtime verification is claimed.
 
@@ -66,7 +66,7 @@ If an older local database still contains the original demo users, run the follo
 .\.venv\Scripts\python.exe manage.py personalize_demo
 ```
 
-Already-personalized databases can run it again without duplicate posts/comments. Username conflicts, staff accounts, missing demo users and production mode stop the command. The supplied original project brief remains unchanged as source material; historical usernames occur only there and in the conversion command/tests.
+Already-personalized databases can run it again without duplicate posts/comments. Username conflicts, staff accounts, missing demo users and production mode stop the command. Historical usernames occur only in the conversion command/tests.
 
 ### Staff account
 
@@ -126,13 +126,11 @@ Each domain app includes committed schema migrations. db.sqlite3, media uploads,
 
 ## Documentation
 
-- [Complete submission documentation](docs/PROJECT_DOCUMENTATION.md) — overview, setup, architecture, database design, API, user manual, screenshots, test evidence, and deployment.
-- [Original project brief](docs/project-brief.txt)
+- [Complete submission documentation](docs/PROJECT_DOCUMENTATION.md) — overview, setup, architecture, database design, API, user manual, screenshots, and test evidence.
 - [Requirement mapping](docs/requirements.md)
 - [Architecture, data structures, algorithms, and security](docs/architecture.md)
 - [REST API and WebSocket reference](docs/api.md)
 - [User and moderator manual](docs/user-manual.md)
-- [Railway/Heroku deployment guide](docs/deployment.md)
 - [Tests, screenshots, and validation limits](docs/testing.md)
 - [Project analysis questions](docs/analysis.md)
 
@@ -142,11 +140,6 @@ Everyone means signed-in, non-blocked users. A private profile narrows its posts
 
 Images pass authorization on every request, including mobile token requests. No unrestricted media directory is exposed. Shares do not alter audience rules.
 
-## Production configuration
-
-Follow the [deployment guide](docs/deployment.md). Production startup requires PostgreSQL, Redis, a strong secret, explicit allowed hosts, and private S3-compatible media storage. Secure cookies, TLS redirects, and HSTS are enabled with DEBUG=False. Do not expose the development server or demo accounts publicly.
-
-A public release still needs real cloud resources, credentials, storage permissions, TLS, backups, monitoring, and live smoke tests. No performance or public-hosting result has been invented.
 
 ## Third-party assets
 
