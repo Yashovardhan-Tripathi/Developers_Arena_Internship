@@ -1,10 +1,10 @@
-# Gather · Social Media Platform
+# TimeConnector · Social Media Platform
 
 A complete Django social platform for everyday stories and meaningful connections. Built with a responsive Bootstrap interface, a mobile-ready REST API, and live WebSocket notifications.
 
 **Status:** implemented and verified locally. Cloud deployment is pending at the user's request. Docker and Railway configuration are included; no live production URL or container-runtime verification is claimed.
 
-![Gather desktop feed](docs/screenshots/feed-desktop.jpg)
+![TimeConnector desktop feed](docs/screenshots/feed-desktop.jpg)
 
 ## Features
 
@@ -51,6 +51,8 @@ Start the server with `.\.venv\Scripts\python.exe manage.py runserver`, then use
 | Demo member | Yash Tripathi |
 | Username | `yashtri21` |
 | Password | `GatherDemo!2026` |
+
+The existing demo password is retained after the TimeConnector rename so evaluator access continues to work.
 
 **Suggested evaluation walkthrough:** browse the feed and photo filter, open a post to see comments, try liking or creating a post, and explore **Discover people**, **Connections**, **Notifications**, **My profile**, and **Settings**. This is a regular member account; staff moderation requires a separate administrator account.
 

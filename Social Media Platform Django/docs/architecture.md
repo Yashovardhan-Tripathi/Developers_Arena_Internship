@@ -1,6 +1,6 @@
 # Architecture and technical decisions
 
-Gather is a Django monolith with server-rendered Bootstrap pages, a Django REST Framework API, and Django Channels for WebSocket notifications. It implements the required standard platform plus privacy, blocking, reporting, and staff moderation. Chat, groups, and events are optional extensions and are not implemented.
+TimeConnector is a Django monolith with server-rendered Bootstrap pages, a Django REST Framework API, and Django Channels for WebSocket notifications. It implements the required standard platform plus privacy, blocking, reporting, and staff moderation. Chat, groups, and events are optional extensions and are not implemented.
 
 ## Request paths
 

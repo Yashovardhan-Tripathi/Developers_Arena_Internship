@@ -102,7 +102,7 @@ SECURE_REDIRECT_EXEMPT = [r'^health/$']
 
 CACHES = {'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}}
 if REDIS_URL:
-    CACHES = {'default': {'BACKEND': 'django.core.cache.backends.redis.RedisCache', 'LOCATION': REDIS_URL, 'KEY_PREFIX': 'gather'}}
+    CACHES = {'default': {'BACKEND': 'django.core.cache.backends.redis.RedisCache', 'LOCATION': REDIS_URL, 'KEY_PREFIX': 'timeconnector'}}
 
 if not DEBUG and DATABASES['default']['ENGINE'] != 'django.db.backends.postgresql':
     raise ImproperlyConfigured('Use PostgreSQL for the production database.')

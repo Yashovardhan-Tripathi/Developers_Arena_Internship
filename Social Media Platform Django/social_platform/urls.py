@@ -36,5 +36,5 @@ urlpatterns = [
     path('notifications/<int:pk>/read/', notification_views.mark_read, name='notification-read'),
     path('api/', include('api.urls')),
 ]
-admin.site.site_header = 'Gather moderation'
-admin.site.site_title = 'Gather admin'
+admin.site.site_header = 'TimeConnector moderation'
+admin.site.site_title = 'TimeConnector admin'

@@ -1,4 +1,4 @@
-# Gather — Social Media Platform
+# TimeConnector — Social Media Platform
 
 **Complete Django Project Documentation**  
 **Project option:** Option 2 — Standard Version  
@@ -24,7 +24,7 @@
 
 ### Purpose
 
-Gather is a Django social media platform where registered members share text and images, comment on posts, like content, manage friendships, and receive notifications. It provides a responsive website and an authenticated REST API for other clients.
+TimeConnector is a Django social media platform where registered members share text and images, comment on posts, like content, manage friendships, and receive notifications. It provides a responsive website and an authenticated REST API for other clients.
 
 The project demonstrates a complete social workflow: create an account, build a profile, connect with people, publish a post with an audience, interact with permitted content, and receive saved and live notifications. Staff can review reports and hide inappropriate content through Django admin.
 
@@ -251,7 +251,7 @@ Domain apps contain models, views/forms or services, and committed migrations as
 
 ### Application architecture
 
-Gather uses Django's Model–Template–View pattern. A URL selects a view, the view applies authentication and shared services, models query the database, and a template or serializer builds the response. The website uses sessions; external REST clients can use tokens. Daphne serves ASGI so the same application supports HTTP and WebSockets.
+TimeConnector uses Django's Model–Template–View pattern. A URL selects a view, the view applies authentication and shared services, models query the database, and a template or serializer builds the response. The website uses sessions; external REST clients can use tokens. Daphne serves ASGI so the same application supports HTTP and WebSockets.
 
 ```mermaid
 flowchart TD
@@ -463,13 +463,13 @@ List responses use this structure; values below are illustrative:
 Use an account you created; replace the password placeholder. This example creates a friends-only post in your local database.
 
 ```powershell
-$gatherBase = 'http://127.0.0.1:8000'
-$gatherLogin = @{ username = 'newmember'; password = '<your-password>' } | ConvertTo-Json
-$gatherToken = Invoke-RestMethod -Method Post -Uri "$gatherBase/api/auth/token/" -ContentType 'application/json' -Body $gatherLogin
-$gatherHeaders = @{ Authorization = "Token $($gatherToken.token)" }
-$gatherPostBody = @{ content = 'Hello from the API'; visibility = 'friends' } | ConvertTo-Json
-Invoke-RestMethod -Method Post -Uri "$gatherBase/api/posts/" -Headers $gatherHeaders -ContentType 'application/json' -Body $gatherPostBody
-Invoke-RestMethod -Method Get -Uri "$gatherBase/api/posts/" -Headers $gatherHeaders
+$timeConnectorBase = 'http://127.0.0.1:8000'
+$timeConnectorLogin = @{ username = 'newmember'; password = '<your-password>' } | ConvertTo-Json
+$timeConnectorToken = Invoke-RestMethod -Method Post -Uri "$timeConnectorBase/api/auth/token/" -ContentType 'application/json' -Body $timeConnectorLogin
+$timeConnectorHeaders = @{ Authorization = "Token $($timeConnectorToken.token)" }
+$timeConnectorPostBody = @{ content = 'Hello from the API'; visibility = 'friends' } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri "$timeConnectorBase/api/posts/" -Headers $timeConnectorHeaders -ContentType 'application/json' -Body $timeConnectorPostBody
+Invoke-RestMethod -Method Get -Uri "$timeConnectorBase/api/posts/" -Headers $timeConnectorHeaders
 ```
 
 ### Status and error behavior
@@ -559,27 +559,27 @@ The five images below were captured from the local browser on 24 October 2026 af
 
 ### Figure 1 — Desktop home feed
 
-![Gather desktop home feed, composer, audience selector, navigation and member profile card](screenshots/feed-desktop.jpg)
+![TimeConnector desktop home feed, composer, audience selector, navigation and member profile card](screenshots/feed-desktop.jpg)
 
 The desktop capture shows the post composer, photo upload, audience selector, feed tabs, search, sidebar navigation and profile summary. It provides visual evidence of the implemented page layout.
 
 ### Figure 2 — Mobile home feed
 
-![Gather mobile home feed with Ishita's study post and bottom navigation](screenshots/feed-mobile.jpg)
+![TimeConnector mobile home feed with Ishita's study post and bottom navigation](screenshots/feed-mobile.jpg)
 
 The mobile capture shows the stacked composer, Ishita's study post, interaction controls and bottom navigation. The 390 × 844 review found no horizontal overflow (document width 375 pixels). Privacy enforcement is demonstrated separately by automated tests.
 
 ### Figure 3 — Post discussion page
 
-![Gather Conversation page showing a post and its attached image](screenshots/conversation.jpg)
+![TimeConnector Conversation page showing a post and its attached image](screenshots/conversation.jpg)
 
 The **Conversation** page shows Priyanshu's image post and its discussion, including drafted comments by Yash and Ayush. The full-page capture demonstrates the renamed authors and updated sample content. Comment creation and deletion also have automated test evidence. This page is not real-time chat.
 
 ### Figure 4 — Connections
 
-![Gather Connections page with incoming request controls, sent requests and friend cards](screenshots/connections.jpg)
+![TimeConnector Connections page with request areas and three friend cards](screenshots/connections.jpg)
 
-The capture shows an incoming friend request with **Accept**/**Decline** actions, the outgoing requests area and existing friends. Profile editing and notification delivery are covered by source and tests rather than additional screenshots.
+The refreshed capture shows no pending incoming or outgoing requests and three existing friends, including Ayush. Accept/decline behavior remains covered by automated tests. Profile editing and notification delivery are covered by source and tests rather than additional screenshots.
 
 ### Figure 5 — People directory
 
@@ -639,7 +639,7 @@ The existing verification helper was rerun successfully on **24 October 2026** w
 | Django system check | Passed; no issues |
 | Migration drift (`makemigrations --check --dry-run`) | Passed; no changes detected |
 | Static asset collection | Passed |
-| Automated tests | **56 passed in 3.387 seconds** |
+| Automated tests | **56 passed in 7.573 seconds** |
 | Production configuration (`check --deploy`) | Passed with placeholder infrastructure; connectivity not verified |
 
 The earlier manual browser record covers login, creating an Only me post, filtering photos, liking, commenting, viewing connections and reviewing the mobile layout. The 24 October review repeated sign-in, photo filtering, discussion/connection/directory viewing and mobile layout checks with the new identities; it did not create new interactions. WebSocket delivery is tested through ASGI communicators; a production two-browser demonstration is not claimed.

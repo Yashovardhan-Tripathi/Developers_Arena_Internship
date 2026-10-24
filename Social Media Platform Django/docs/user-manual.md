@@ -1,4 +1,4 @@
-# Gather user manual
+# TimeConnector user manual
 
 ## Start here
 

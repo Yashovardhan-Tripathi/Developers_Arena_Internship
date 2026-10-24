@@ -10,7 +10,7 @@
   }));
   document.querySelectorAll('[data-share]').forEach(button => button.addEventListener('click', async () => {
     try {
-      if (navigator.share) await navigator.share({url: button.dataset.share, title: 'A story on Gather'});
+      if (navigator.share) await navigator.share({url: button.dataset.share, title: 'A story on TimeConnector'});
       else { await navigator.clipboard.writeText(button.dataset.share); show('Post link copied. Privacy settings still apply.'); }
     } catch (error) { if (error.name !== 'AbortError') show('Copy this post’s browser address to share it.'); }
   }));

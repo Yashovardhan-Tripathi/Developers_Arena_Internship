@@ -70,4 +70,4 @@ class Command(BaseCommand):
             Comment.objects.get_or_create(post=posts[story_index], author=users[username], content=content)
         Notification.objects.get_or_create(recipient=primary, actor=reel_maker, verb='sent you a friend request')
         Notification.objects.get_or_create(recipient=primary, actor=newcomer, verb='started following you')
-        self.stdout.write(self.style.SUCCESS('Demo data ready. Sign in as yashtri21 with the password you supplied.'))
+        self.stdout.write(self.style.SUCCESS('TimeConnector demo data ready. Sign in as yashtri21 with the password you supplied.'))

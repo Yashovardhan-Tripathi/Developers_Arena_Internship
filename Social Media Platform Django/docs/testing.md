@@ -2,7 +2,7 @@
 
 ## Verified result
 
-The latest local verification on 24 October 2026 used Python 3.13.9 and the installed locked dependencies, including Django 5.2.18. The existing verification helper completed all five checks successfully; the suite passed 56 tests in 3.387 seconds. Actual output is saved in [validation.txt](validation.txt). The screenshots were refreshed on 24 October after applying the six user-approved profiles. Original functional interaction observations are retained separately below.
+The latest local verification on 24 October 2026 used Python 3.13.9 and the installed locked dependencies, including Django 5.2.18. The existing verification helper completed all five checks successfully; the suite passed 56 tests in 7.573 seconds. Actual output is saved in [validation.txt](validation.txt). The screenshots were refreshed on 24 October after applying the six user-approved profiles. Original functional interaction observations are retained separately below.
 
 | Check | Result |
 | --- | --- |
@@ -87,7 +87,7 @@ The separate automated tests verify that another account cannot read the private
 
 ### Connections
 
-![Friend requests and friends](screenshots/connections.jpg)
+![TimeConnector request areas and existing friends](screenshots/connections.jpg)
 
 Screenshots are actual browser captures, not mockups. The landscape is a procedurally drawn demo image. Profiles use user-supplied details and sample counts; the UI computes counts from database records.
 
