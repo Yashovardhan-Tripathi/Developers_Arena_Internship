@@ -1,0 +1,10 @@
+Django>=5.2.12,<5.3
+djangorestframework>=3.16,<3.17
+channels[daphne]>=4.3,<5
+channels-redis>=4.3,<5
+Pillow>=11.3,<13
+dj-database-url>=3,<4
+psycopg[binary]>=3.2,<4
+whitenoise>=6.9,<7
+python-dotenv>=1.1,<2
+django-storages[s3]>=1.14,<2

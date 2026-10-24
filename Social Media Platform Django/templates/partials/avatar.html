@@ -1,0 +1,1 @@
+<span class="avatar {% if large %}avatar-lg{% endif %}">{% if person.profile.profile_picture %}<img src="{% url 'profile-image' person.pk 'profile_picture' %}" alt="{{ person.username }}'s avatar" loading="lazy">{% else %}{{ person.first_name|default:person.username|slice:":1"|upper }}{% endif %}</span>

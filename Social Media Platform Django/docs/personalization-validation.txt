@@ -1,0 +1,15 @@
+Local personalization validation, 24 October 2026
+Compared with pre-change SQLite backup.
+{
+  "auth_user_admin_unchanged": true,
+  "users_userprofile_admin_unchanged": true,
+  "friends_friendrequest_preserved": true,
+  "friends_follow_preserved": true,
+  "friends_block_preserved": true,
+  "posts_like_preserved": true,
+  "notifications_notification_preserved": true,
+  "authtoken_token_preserved": true,
+  "passwords_preserved": true,
+  "admin_comments_preserved": true,
+  "user_count": 7
+}

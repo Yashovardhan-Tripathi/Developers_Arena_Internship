@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block page_name %}Conversation{% endblock %}{% block content %}<div class="single-column"><a class="back-link" href="{% url 'feed' %}">← Back to feed</a>{% include 'partials/post.html' with show_comments=True %}</div>{% endblock %}

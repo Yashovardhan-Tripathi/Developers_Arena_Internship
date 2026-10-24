@@ -1,0 +1,151 @@
+Local verification: 2026-10-24T07:29:45.665560+05:30
+Python: 3.13.9
+Production settings check uses placeholders only; no infrastructure connection is verified.
+
+$ python manage.py check
+System check identified no issues (0 silenced).
+
+Exit code: 0
+
+$ python manage.py makemigrations --check --dry-run
+No changes detected
+
+Exit code: 0
+
+$ python manage.py collectstatic --noinput
+
+0 static files copied to 'G:\Developers_Arena\Developers_Arena_Internship\Social Media Platform Django\staticfiles', 168 unmodified, 439 post-processed.
+
+Exit code: 0
+
+$ python manage.py test --settings=social_platform.test_settings --verbosity=2
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+Found 56 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: api, channels, daphne, messages, rest_framework, staticfiles
+  Apply all migrations: admin, auth, authtoken, contenttypes, friends, notifications, posts, sessions, users
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying authtoken.0001_initial... OK
+  Applying authtoken.0002_auto_20160226_1747... OK
+  Applying authtoken.0003_tokenproxy... OK
+  Applying authtoken.0004_alter_tokenproxy_options... OK
+  Applying friends.0001_initial... OK
+  Applying posts.0001_initial... OK
+  Applying notifications.0001_initial... OK
+  Applying sessions.0001_initial... OK
+  Applying users.0001_initial...test_seed_uses_approved_profiles_and_reruns_without_duplicates_or_password_changes (tests.test_demo_personalization.ApprovedSeedTests.test_seed_uses_approved_profiles_and_reruns_without_duplicates_or_password_changes) ... ok
+test_personalization_preserves_identity_credentials_relationships_and_admin (tests.test_demo_personalization.PersonalizationTests.test_personalization_preserves_identity_credentials_relationships_and_admin) ... ok
+test_production_personalization_is_refused (tests.test_demo_personalization.PersonalizationTests.test_production_personalization_is_refused) ... ok
+test_seed_refuses_to_duplicate_original_accounts (tests.test_demo_personalization.PersonalizationTests.test_seed_refuses_to_duplicate_original_accounts) ... ok
+test_staff_demo_account_is_protected (tests.test_demo_personalization.PersonalizationTests.test_staff_demo_account_is_protected) ... ok
+test_target_collision_changes_nothing (tests.test_demo_personalization.PersonalizationTests.test_target_collision_changes_nothing) ... ok
+test_all_main_pages_render (tests.test_platform.PlatformTests.test_all_main_pages_render) ... ok
+test_anonymous_redirect_and_api_denial (tests.test_platform.PlatformTests.test_anonymous_redirect_and_api_denial) ... Unauthorized: /api/posts/
+ok
+test_api_signup_validates_password (tests.test_platform.PlatformTests.test_api_signup_validates_password) ... Bad Request: /api/auth/register/
+ok
+test_author_cannot_be_spoofed (tests.test_platform.PlatformTests.test_author_cannot_be_spoofed) ... ok
+test_block_hides_both_directions_and_removes_connections (tests.test_platform.PlatformTests.test_block_hides_both_directions_and_removes_connections) ... Not Found: /u/member_two/
+ok
+test_block_unblock_api (tests.test_platform.PlatformTests.test_block_unblock_api) ... ok
+test_cannot_edit_or_delete_another_users_post (tests.test_platform.PlatformTests.test_cannot_edit_or_delete_another_users_post) ... Forbidden: /api/posts/1/
+Forbidden: /api/posts/1/
+Not Found: /posts/1/delete/
+ok
+test_cannot_interact_with_private_post (tests.test_platform.PlatformTests.test_cannot_interact_with_private_post) ... Not Found: /api/posts/3/like/
+Not Found: /api/posts/3/comments/
+ok
+test_comment_creation_and_author_delete (tests.test_platform.PlatformTests.test_comment_creation_and_author_delete) ... ok
+test_comment_deletion_permissions (tests.test_platform.PlatformTests.test_comment_deletion_permissions) ... Forbidden: /api/comments/1/
+ok
+test_create_update_delete_post (tests.test_platform.PlatformTests.test_create_update_delete_post) ... ok
+test_csrf_blocks_session_writes (tests.test_platform.PlatformTests.test_csrf_blocks_session_writes) ... Forbidden (CSRF cookie not set.): /posts/new/
+ok
+test_database_like_uniqueness (tests.test_platform.PlatformTests.test_database_like_uniqueness) ... ok
+test_declined_request_can_be_resent (tests.test_platform.PlatformTests.test_declined_request_can_be_resent) ... ok
+test_default_post_privacy (tests.test_platform.PlatformTests.test_default_post_privacy) ... ok
+test_duplicate_and_reverse_requests (tests.test_platform.PlatformTests.test_duplicate_and_reverse_requests) ... ok
+test_empty_post_rejected (tests.test_platform.PlatformTests.test_empty_post_rejected) ... Bad Request: /api/posts/
+ok
+test_follow_does_not_grant_private_access (tests.test_platform.PlatformTests.test_follow_does_not_grant_private_access) ... ok
+test_health_check (tests.test_platform.PlatformTests.test_health_check) ... ok
+test_hidden_and_blocked_comments_filtered (tests.test_platform.PlatformTests.test_hidden_and_blocked_comments_filtered) ... ok
+test_hidden_content_disappears_for_owner_too (tests.test_platform.PlatformTests.test_hidden_content_disappears_for_owner_too) ... ok
+test_html_escapes_user_content (tests.test_platform.PlatformTests.test_html_escapes_user_content) ... ok
+test_html_signup_and_login (tests.test_platform.PlatformTests.test_html_signup_and_login) ... ok
+test_image_filename_must_be_safe (tests.test_platform.PlatformTests.test_image_filename_must_be_safe) ... ok
+test_image_upload_and_protected_access (tests.test_platform.PlatformTests.test_image_upload_and_protected_access) ... Not Found: /images/posts/4/
+Not Found: /media/images/test.png
+ok
+test_like_idempotent_and_notifies_once (tests.test_platform.PlatformTests.test_like_idempotent_and_notifies_once) ... ok
+test_notification_ownership_and_read (tests.test_platform.PlatformTests.test_notification_ownership_and_read) ... Not Found: /api/notifications/1/read/
+ok
+test_notification_privacy_rechecked (tests.test_platform.PlatformTests.test_notification_privacy_rechecked) ... ok
+test_only_receiver_can_accept (tests.test_platform.PlatformTests.test_only_receiver_can_accept) ... Forbidden: /api/friend-requests/1/respond/
+ok
+test_password_change_revokes_mobile_token (tests.test_platform.PlatformTests.test_password_change_revokes_mobile_token) ... ok
+test_post_edit_can_clear_image (tests.test_platform.PlatformTests.test_post_edit_can_clear_image) ... ok
+test_post_mutations_require_post_method (tests.test_platform.PlatformTests.test_post_mutations_require_post_method) ... Method Not Allowed (GET): /posts/1/like/
+ok
+test_private_image_widgets_render_and_do_not_expose_storage (tests.test_platform.PlatformTests.test_private_image_widgets_render_and_do_not_expose_storage) ... ok
+test_private_profile_overrides_public_posts (tests.test_platform.PlatformTests.test_private_profile_overrides_public_posts) ... Not Found: /api/posts/1/
+ok
+test_profile_created_on_registration (tests.test_platform.PlatformTests.test_profile_created_on_registration) ... ok
+test_profile_image_api_upload (tests.test_platform.PlatformTests.test_profile_image_api_upload) ... ok
+test_profile_update_and_email_not_exposed (tests.test_platform.PlatformTests.test_profile_update_and_email_not_exposed) ... ok
+test_public_friend_private_visibility (tests.test_platform.PlatformTests.test_public_friend_private_visibility) ... ok
+test_reject_disguised_and_oversized_uploads (tests.test_platform.PlatformTests.test_reject_disguised_and_oversized_uploads) ... Bad Request: /api/posts/
+ok
+test_report_and_moderation (tests.test_platform.PlatformTests.test_report_and_moderation) ... Not Found: /api/posts/1/
+ok
+test_report_requires_exactly_one_visible_target (tests.test_platform.PlatformTests.test_report_requires_exactly_one_visible_target) ... Bad Request: /api/reports/
+Forbidden: /api/reports/
+ok
+test_search_and_following_filters (tests.test_platform.PlatformTests.test_search_and_following_filters) ... Bad Request: /api/posts/
+ok
+test_self_connections_rejected (tests.test_platform.PlatformTests.test_self_connections_rejected) ... ok
+test_self_notification_suppressed (tests.test_platform.PlatformTests.test_self_notification_suppressed) ... ok
+test_token_can_fetch_protected_image (tests.test_platform.PlatformTests.test_token_can_fetch_protected_image) ... ok
+test_token_login_and_revocation (tests.test_platform.PlatformTests.test_token_login_and_revocation) ... Unauthorized: /api/me/
+ok
+test_unfriend_revokes_access (tests.test_platform.PlatformTests.test_unfriend_revokes_access) ... ok
+test_anonymous_socket_rejected (tests.test_platform.WebsocketTests.test_anonymous_socket_rejected) ... ok
+test_authenticated_socket_delivers_saved_notification (tests.test_platform.WebsocketTests.test_authenticated_socket_delivers_saved_notification) ... ok
+test_foreign_origin_rejected (tests.test_platform.WebsocketTests.test_foreign_origin_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 56 tests in 3.387s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+ OK
+System check identified no issues (0 silenced).
+
+Exit code: 0
+
+$ python manage.py check --deploy
+System check identified no issues (0 silenced).
+
+Exit code: 0
