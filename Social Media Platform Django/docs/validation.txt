@@ -1,4 +1,4 @@
-Local verification: 2026-10-24T12:27:57.515661+05:30
+Local verification: 2026-10-27T01:45:30.175859+05:30
 Python: 3.13.9
 Production settings check uses placeholders only; no infrastructure connection is verified.
 
@@ -14,14 +14,14 @@ Exit code: 0
 
 $ python manage.py collectstatic --noinput
 
-3 static files copied to 'G:\Developers_Arena\Developers_Arena_Internship\Social Media Platform Django\staticfiles', 165 unmodified, 440 post-processed.
+0 static files copied to 'G:\Developers_Arena\Developers_Arena_Internship\Social Media Platform Django\staticfiles', 168 unmodified, 439 post-processed.
 
 Exit code: 0
 
 $ python manage.py test --settings=social_platform.test_settings --verbosity=2
 Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
 
-Found 56 test(s).
+Found 63 test(s).
 Operations to perform:
   Synchronize unmigrated apps: api, channels, daphne, messages, rest_framework, staticfiles
   Apply all migrations: admin, auth, authtoken, contenttypes, friends, notifications, posts, sessions, users
@@ -60,6 +60,23 @@ test_production_personalization_is_refused (tests.test_demo_personalization.Pers
 test_seed_refuses_to_duplicate_original_accounts (tests.test_demo_personalization.PersonalizationTests.test_seed_refuses_to_duplicate_original_accounts) ... ok
 test_staff_demo_account_is_protected (tests.test_demo_personalization.PersonalizationTests.test_staff_demo_account_is_protected) ... ok
 test_target_collision_changes_nothing (tests.test_demo_personalization.PersonalizationTests.test_target_collision_changes_nothing) ... ok
+test_author_filter_rejects_invalid_numeric_inputs (tests.test_functional_audit.FunctionalAuditTests.test_author_filter_rejects_invalid_numeric_inputs) ... Bad Request: /api/posts/
+Bad Request: /api/posts/
+Bad Request: /api/posts/
+Bad Request: /api/posts/
+Bad Request: /api/posts/
+Bad Request: /api/posts/
+ok
+test_health_returns_service_unavailable_on_database_failure (tests.test_functional_audit.FunctionalAuditTests.test_health_returns_service_unavailable_on_database_failure) ... Service Unavailable: /health/
+ok
+test_html_password_change_preserves_session_and_revokes_token (tests.test_functional_audit.FunctionalAuditTests.test_html_password_change_preserves_session_and_revokes_token) ... ok
+test_html_post_lifecycle_and_comment (tests.test_functional_audit.FunctionalAuditTests.test_html_post_lifecycle_and_comment) ... ok
+test_html_social_connection_lifecycle (tests.test_functional_audit.FunctionalAuditTests.test_html_social_connection_lifecycle) ... Not Found: /u/audit_peer/
+ok
+test_login_rate_limit (tests.test_functional_audit.FunctionalAuditTests.test_login_rate_limit) ... Too Many Requests: /accounts/login/
+ok
+test_moderator_resolves_and_dismisses_reports (tests.test_functional_audit.FunctionalAuditTests.test_moderator_resolves_and_dismisses_reports) ... Not Found: /api/posts/1/
+ok
 test_all_main_pages_render (tests.test_platform.PlatformTests.test_all_main_pages_render) ... ok
 test_anonymous_redirect_and_api_denial (tests.test_platform.PlatformTests.test_anonymous_redirect_and_api_denial) ... Unauthorized: /api/posts/
 ok
@@ -135,7 +152,7 @@ test_authenticated_socket_delivers_saved_notification (tests.test_platform.Webso
 test_foreign_origin_rejected (tests.test_platform.WebsocketTests.test_foreign_origin_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 56 tests in 7.573s
+Ran 63 tests in 8.510s
 
 OK
 Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

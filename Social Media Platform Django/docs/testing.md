@@ -2,14 +2,14 @@
 
 ## Verified result
 
-The latest local verification on 24 October 2026 used Python 3.13.9 and the installed locked dependencies, including Django 5.2.18. The existing verification helper completed all five checks successfully; the suite passed 56 tests in 7.573 seconds. Actual output is saved in [validation.txt](validation.txt). The screenshots were refreshed on 24 October after applying the six user-approved profiles. Original functional interaction observations are retained separately below.
+The latest local verification on 27 October 2026 used Python 3.13.9 and the installed locked dependencies, including Django 5.2.18. The verification helper completed all five checks successfully; the suite passed 63 tests in 8.510 seconds. Actual output is saved in [validation.txt](validation.txt). The [functionality audit](FUNCTIONAL_AUDIT.md) records seven added tests, a corrected API validation bug, fresh browser checks and limits. Existing screenshots retain their 24 October date. Original functional interaction observations are retained separately below.
 
 | Check | Result |
 | --- | --- |
 | Django system check | Passed, no issues |
 | Migration drift (makemigrations --check --dry-run) | Passed, no changes |
 | Static asset collection | Passed, including manifest/compression |
-| Automated test suite | 56 tests passed |
+| Automated test suite | 63 tests passed |
 | Production settings check (--deploy) | Passed with placeholder infrastructure configuration |
 | Python source compilation | Passed |
 | Desktop browser | Login, post creation, likes, comment, photo feed, connections |
@@ -52,7 +52,7 @@ From the project root:
 .\.venv\Scripts\python.exe scripts\verify.py
 ```
 
-This runs system checks, migration drift, static collection, 56 tests, and a production configuration check. It saves real output to docs/validation.txt and exits nonzero if any check fails. It forces development infrastructure settings for local verification and uses placeholders for the isolated production settings check; it never deploys or modifies cloud resources.
+This runs system checks, migration drift, static collection, 63 tests, and a production configuration check. It saves real output to docs/validation.txt and exits nonzero if any check fails. It forces development infrastructure settings for local verification and uses placeholders for the isolated production settings check; it never deploys or modifies cloud resources.
 
 Individual commands appear in the README. CI configuration mirrors the core checks on Python 3.13, but a GitHub Actions run has not yet occurred.
 
@@ -110,6 +110,6 @@ During implementation, checks exposed and corrected stable-pagination warnings, 
 
 ## Profile personalization regression checks
 
-Six tests in `tests/test_demo_personalization.py` cover approved seeding, repeatability without duplicate accounts/posts/comments, preserving IDs/passwords/tokens/relationships and administrator records, username-collision refusal, staff-account protection, production refusal, and refusing to seed duplicate original accounts. The total suite now contains 56 tests.
+Six tests in `tests/test_demo_personalization.py` cover approved seeding, repeatability without duplicate accounts/posts/comments, preserving IDs/passwords/tokens/relationships and administrator records, username-collision refusal, staff-account protection, production refusal, and refusing to seed duplicate original accounts. Together with platform tests and the seven functionality audit tests, the total suite now contains 63 tests.
 
 [Database preservation evidence](personalization-validation.txt) compares the actual local database with its pre-change backup, including the administrator profile and comments. All preservation checks passed. The administrator was not used for the browser sign-in.

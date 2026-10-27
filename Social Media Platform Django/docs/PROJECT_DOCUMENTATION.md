@@ -2,7 +2,7 @@
 
 **Complete Django Project Documentation**  
 **Project option:** Option 2 — Standard Version  
-**Documentation date:** 24 October 2026  
+**Documentation date:** 27 October 2026  
 **Delivery status:** Local application; public deployment pending
 
 ## Contents
@@ -632,14 +632,14 @@ The representative platform tests below exist in [tests/test_platform.py](../tes
 
 ### Verification record
 
-The existing verification helper was rerun successfully on **24 October 2026** with Python 3.13.9. All five checks exited with code 0. The raw [validation log](validation.txt) records the commands and output; [testing.md](testing.md) maintains the detailed testing record.
+The existing verification helper was rerun successfully on **27 October 2026** with Python 3.13.9. All five checks exited with code 0. The raw [validation log](validation.txt) records the commands and output; [testing.md](testing.md) maintains the detailed testing record. The [functionality audit](FUNCTIONAL_AUDIT.md) records the corrected API author-filter crash, seven added workflow tests and fresh desktop/mobile browser checks.
 
-| Check | Result on 24 October 2026 |
+| Check | Result on 27 October 2026 |
 | --- | --- |
 | Django system check | Passed; no issues |
 | Migration drift (`makemigrations --check --dry-run`) | Passed; no changes detected |
 | Static asset collection | Passed |
-| Automated tests | **56 passed in 7.573 seconds** |
+| Automated tests | **63 passed in 8.510 seconds** |
 | Production configuration (`check --deploy`) | Passed with placeholder infrastructure; connectivity not verified |
 
 The earlier manual browser record covers login, creating an Only me post, filtering photos, liking, commenting, viewing connections and reviewing the mobile layout. The 24 October review repeated sign-in, photo filtering, discussion/connection/directory viewing and mobile layout checks with the new identities; it did not create new interactions. WebSocket delivery is tested through ASGI communicators; a production two-browser demonstration is not claimed.

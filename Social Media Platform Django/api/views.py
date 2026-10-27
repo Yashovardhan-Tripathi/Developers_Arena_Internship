@@ -92,9 +92,9 @@ class PostViewSet(viewsets.ModelViewSet):
             qs = qs.filter(content__icontains=query)
         author = self.request.query_params.get('author')
         if author:
-            if not author.isdigit():
-                raise serializers.ValidationError({'author': 'Use a numeric user ID.'})
-            qs = qs.filter(author_id=author)
+            if not author.isascii() or not author.isdigit() or len(author) > 19 or int(author) > 2**63 - 1:
+                raise serializers.ValidationError({'author': 'Use a numeric user ID between 0 and 9223372036854775807.'})
+            qs = qs.filter(author_id=int(author))
         tab = self.request.query_params.get('feed')
         if tab == 'following':
             qs = qs.filter(author_id__in=Follow.objects.filter(follower=self.request.user).values('following_id'))

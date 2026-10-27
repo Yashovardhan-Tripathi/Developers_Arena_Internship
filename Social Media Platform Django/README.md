@@ -15,7 +15,7 @@ A complete Django social platform for everyday stories and meaningful connection
 - Search for posts/people; filter by friends, following, photos, or API author.
 - Public/friends/Only me audiences, private profiles, protected image delivery, reports, and staff moderation.
 - Authenticated, paginated REST API with token login and upload support.
-- 56 automated tests, migrations, CI workflow, production settings, Docker Compose, and Railway configuration.
+- 63 automated tests, migrations, CI workflow, production settings, Docker Compose, and Railway configuration.
 
 The optional chat, groups, and events extension is outside this implementation. Seeded profiles use user-supplied details; posts, comments, and connections are local demonstration content.
 
@@ -87,7 +87,7 @@ Open /admin/ to moderate reports, hide/restore content, and manage users. The de
 .\.venv\Scripts\python.exe manage.py test --settings=social_platform.test_settings --verbosity=2
 ```
 
-The latest recorded local run passed **56 tests**, including real ASGI WebSocket communicators. Test settings use an in-memory SQLite database, image storage, and channel layer. They use fast password hashing only in tests.
+The latest recorded local run on 27 October 2026 passed **63 tests**, including real ASGI WebSocket communicators. Test settings use an in-memory SQLite database, image storage, and channel layer. They use fast password hashing only in tests. See the [functionality audit](docs/FUNCTIONAL_AUDIT.md) for the corrected API input bug, additional workflow coverage, browser checks and verification limits.
 
 [Testing evidence](docs/testing.md) explains what was checked and the limits. [Validation log](docs/validation.txt) contains the actual command output. The CI workflow is supplied but has not been run on GitHub.
 

@@ -15,7 +15,7 @@ This maps project requirements to their implementation and evidence. “Implemen
 | Search/filtering | Post/people search, following/friends/photo feeds, author API filtering |
 | Privacy | Public/friends/Only me, private profiles, bilateral block, server-enforced image access |
 | Content moderation | User reports; staff hide/restore, resolve/dismiss, reviewer/time, inactive-user filtering |
-| Testing/optimization | 56 automated tests; query selection/prefetch, aggregate likes, stable pagination, indexes and Redis support |
+| Testing/optimization | 63 automated tests; query selection/prefetch, aggregate likes, stable pagination, indexes and Redis support |
 | Comprehensive documentation | README, architecture, API, user/moderator manual, testing, analysis and screenshots |
 
 ## Six-stage delivery mapping
@@ -25,7 +25,7 @@ This maps project requirements to their implementation and evidence. “Implemen
 3. Social features: request state machine, following and saved notifications.
 4. Advanced required features: WebSocket delivery, search, privacy, blocks, reports and moderation.
 5. Frontend/API: Bootstrap pages and DRF/mobile integration.
-6. Testing/handoff: migrations, 56 tests, browser checks, static collection, deployment configuration, documentation.
+6. Testing/handoff: migrations, 63 tests, browser checks, static collection, deployment configuration, documentation.
 
 These stages describe implementation order; no six-week work-duration claim is made.
 
