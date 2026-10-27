@@ -1,4 +1,4 @@
-Local verification: 2026-10-27T01:45:30.175859+05:30
+Local verification: 2026-10-28T00:43:27.529473+05:30
 Python: 3.13.9
 Production settings check uses placeholders only; no infrastructure connection is verified.
 
@@ -152,7 +152,7 @@ test_authenticated_socket_delivers_saved_notification (tests.test_platform.Webso
 test_foreign_origin_rejected (tests.test_platform.WebsocketTests.test_foreign_origin_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 63 tests in 8.510s
+Ran 63 tests in 9.372s
 
 OK
 Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

@@ -2,7 +2,7 @@
 
 **Complete Django Project Documentation**  
 **Project option:** Option 2 — Standard Version  
-**Documentation date:** 27 October 2026  
+**Documentation date:** 28 October 2026  
 **Delivery status:** Local application; public deployment pending
 
 ## Contents
@@ -18,7 +18,8 @@
 9. [Visual documentation](#9-visual-documentation)
 10. [Testing and validation evidence](#10-testing-and-validation-evidence)
 11. [Limitations and future enhancements](#11-limitations-and-future-enhancements)
-12. [Submission checklist and references](#12-submission-checklist-and-references)
+12. [Conclusion](#12-conclusion)
+13. [Submission checklist and references](#13-submission-checklist-and-references)
 
 ## 1. Project overview
 
@@ -230,7 +231,10 @@ Social Media Platform Django/
 ├── api/                         DRF serializers, views and API URLs
 ├── templates/                   Server-rendered pages and shared components
 ├── static/                      CSS, JavaScript and vendored Bootstrap
-├── tests/test_platform.py       Platform and WebSocket automated tests
+├── tests/
+│   ├── test_platform.py         Platform and WebSocket automated tests
+│   ├── test_demo_personalization.py  Six demo-data regression tests
+│   └── test_functional_audit.py  Seven additional workflow regression tests
 ├── scripts/verify.py            Repeatable verification and evidence generation
 ├── docs/                        Guides, evidence and screenshots
 ├── .github/workflows/tests.yml  Supplied continuous-integration workflow
@@ -445,7 +449,7 @@ Paths containing `{id}` use a numeric database ID. The image profile endpoint us
 
 Profile API updates do not change username/email/name; the web settings form supports display-name changes. Authors, timestamps, moderation flags and computed counts are server-controlled. Image removal uses a JSON PATCH with the image field set to `null`.
 
-Post filters: `q` for content search, numeric `author`, `feed=friends` or `feed=following`, `kind=photos`, and `page`. People API search matches usernames and first/last names.
+Post filters: `q` for content search, `author` as an ASCII numeric user ID from 0 to 9223372036854775807 with at most 19 digits, `feed=friends` or `feed=following`, `kind=photos`, and `page`. Invalid author values return HTTP 400. People API search matches usernames and first/last names. Website feed search also matches author usernames.
 
 ```http
 GET /api/posts/?feed=friends&kind=photos&page=1
@@ -632,14 +636,14 @@ The representative platform tests below exist in [tests/test_platform.py](../tes
 
 ### Verification record
 
-The existing verification helper was rerun successfully on **27 October 2026** with Python 3.13.9. All five checks exited with code 0. The raw [validation log](validation.txt) records the commands and output; [testing.md](testing.md) maintains the detailed testing record. The [functionality audit](FUNCTIONAL_AUDIT.md) records the corrected API author-filter crash, seven added workflow tests and fresh desktop/mobile browser checks.
+The existing verification helper was rerun successfully on **28 October 2026** with Python 3.13.9. All five checks exited with code 0. The raw [validation log](validation.txt) records the commands and output. [testing.md](testing.md) and the [functionality audit](FUNCTIONAL_AUDIT.md) retain the earlier 27 October results, the corrected API author-filter crash, seven added workflow tests and desktop/mobile browser checks. No new live-browser session or screenshot capture was performed during the 28 October documentation review.
 
-| Check | Result on 27 October 2026 |
+| Check | Result on 28 October 2026 |
 | --- | --- |
 | Django system check | Passed; no issues |
 | Migration drift (`makemigrations --check --dry-run`) | Passed; no changes detected |
 | Static asset collection | Passed |
-| Automated tests | **63 passed in 8.510 seconds** |
+| Automated tests | **63 passed in 9.372 seconds** |
 | Production configuration (`check --deploy`) | Passed with placeholder infrastructure; connectivity not verified |
 
 The earlier manual browser record covers login, creating an Only me post, filtering photos, liking, commenting, viewing connections and reviewing the mobile layout. The 24 October review repeated sign-in, photo filtering, discussion/connection/directory viewing and mobile layout checks with the new identities; it did not create new interactions. WebSocket delivery is tested through ASGI communicators; a production two-browser demonstration is not claimed.
@@ -670,7 +674,13 @@ Expected denial responses such as 400, 401, 403 and 404 appear in test output be
 
 These items are future work, not completed capabilities. No business adoption, capacity, uptime or production-security certification is claimed.
 
-## 12. Submission checklist and references
+## 12. Conclusion
+
+TimeConnector implements the selected Option 2 Standard Version with profiles, posts, comments, likes, friendships and notifications. Its website, REST API and protected image routes share privacy and ownership rules; following, search, blocking and staff moderation extend the core workflow. The 28 October 2026 verification run passed all 63 automated tests and the system, migration, static-file and production-configuration checks.
+
+The project is documented for local evaluation. Public deployment remains pending, and real PostgreSQL, Redis, private S3 and Docker runtime behavior remain unverified. These operational requirements must be completed and evidenced before claiming a production release or full compliance with a submission that requires a deployed application.
+
+## 13. Submission checklist and references
 
 ### Required documentation coverage
 
@@ -684,6 +694,11 @@ These items are future work, not completed capabilities. No business adoption, c
 | Testing Evidence | Section 10: named cases, reproducible commands and linked validation output |
 | API Documentation | Section 7: authentication, endpoints, fields, examples, errors and WebSockets |
 | User Manual | Section 8: member and moderator instructions |
+| Conclusion | Section 12: implemented scope, verification outcome and remaining boundaries |
+
+### Outstanding submission requirements
+
+The original project description also calls for a deployed application and a deployment guide. Public deployment is pending, and the deployment guide was removed at the project owner's request. The supplied deployment configuration does not replace either deliverable. This document covers the local project and must not be presented as evidence that those two requirements are complete.
 
 ### Supporting project documents
 
