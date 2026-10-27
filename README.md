@@ -1,94 +1,119 @@
-# Developers Arena Internship
+# The Developers Arena - Python Internship
 
-This repository contains the **Complete Personal Productivity Suite**, based on the company's internship brief. The Python command-line application combines everyday tools while demonstrating modular programming, object-oriented design, file handling, input validation, and persistence.
+This repository documents **Yashovardhan Tripathi's six-month Python internship with The Developers Arena**. It contains the monthly projects, their source code, setup instructions, documentation, and supporting internship records.
 
-## Project and launch
+The Month 1 project is **Complete Personal Productivity Suite**, and the Month 2 project is **TimeConnector**, a Django social media platform. Months 3-6 remain to be completed as part of the internship.
 
-The application is in [`personal_productivity_suite_/`](personal_productivity_suite_/). The trailing underscore is part of the folder name. Its source, documentation, tests, and screenshots are tracked directly in this repository under **Yashovardhan-Tripathi**.
+## Internship details
 
-```powershell
-git clone https://github.com/Yashovardhan-Tripathi/Developers_Arena_Internship.git
-cd Developers_Arena_Internship/personal_productivity_suite_
-python main.py
-```
-
-For an existing checkout, enter `personal_productivity_suite_` from the repository root and run `python main.py`. Use Python 3.10+ as the documented baseline; substitute `python3` where required. The application uses only the standard library.
-
-| Menu | Tool |
+| Detail | Information |
 | --- | --- |
-| 1 | Calculator: arithmetic, expressions, temporary history |
-| 2 | Notes: JSON persistence, search, edit/delete, TXT/JSON/CSV exports |
-| 3 | Countdown timer and stopwatch with laps |
-| 4 | File organizer with previews and extension-based categories |
-| 5 | Length, mass, temperature, time, and digital storage conversions |
-| 6 | Local notes backup and restore |
-| 7 | Exit |
+| Intern | Yashovardhan Tripathi |
+| Organization | The Developers Arena |
+| Role | Python Intern |
+| Start date | 10 September 2026 |
+| Duration | 6 months |
+| Work arrangement | Remote / virtual internship |
+| Program format | Self-paced learning with monthly deadlines |
+| Batch | 10-SEP-2026 - 6M |
+| Compensation | Unpaid; training and resources provided |
 
-The implementation covers the **Standard Version** tools, plus exports and local backup/restore. Advanced data analysis, customization settings, and cloud sync are not implemented.
+These details come from the [official internship offer letter](docs/internship/OfferLetter_DevelopersArena.pdf), dated 10 September 2026. The original PDF is included for reference.
 
-For optional test setup, run these commands from the application folder:
+## Monthly project progress
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python -m pytest -v
-```
+| Month | Project | Current progress | Documentation |
+| --- | --- | --- | --- |
+| 1 | Complete Personal Productivity Suite | Developed; source and documentation available | [Project README](personal_productivity_suite_/README.md) |
+| 2 | TimeConnector - Social Media Platform | Developed and verified locally; cloud deployment pending | [Project README](Social%20Media%20Platform%20Django/README.md) |
+| 3 | To be added | Pending | Added when the project is available |
+| 4 | To be added | Pending | Added when the project is available |
+| 5 | To be added | Pending | Added when the project is available |
+| 6 | To be added | Pending | Added when the project is available |
 
-On macOS/Linux, activate with `source .venv/bin/activate`. The dependency file contains `pytest>=7.4.0` for testing only. See the [application README](personal_productivity_suite_/README.md) for usage and troubleshooting.
+This table records project development progress. It does not establish official submission acceptance, evaluation results, or internship completion. The remaining four months' projects and tasks are still to be completed.
 
-## Current folder structure
+## Month 1 - Complete Personal Productivity Suite
+
+A Python command-line application that brings everyday productivity tools into one menu:
+
+- Calculator with arithmetic, expressions, and temporary history.
+- Notes manager with JSON storage, search, editing, deletion, and exports.
+- Countdown timer and stopwatch with laps.
+- File organizer with previews and extension-based categories.
+- Unit converter for length, mass, temperature, time, and digital storage.
+- Local notes backup and restore.
+
+The application uses Python's standard library at runtime, with pytest for its tests. Its README, Git ignore rules, and Git attributes are kept inside its own project folder.
+
+Explore the [source code](personal_productivity_suite_/), [project README](personal_productivity_suite_/README.md), [detailed guide](personal_productivity_suite_/GUIDE.md), and [screenshots](personal_productivity_suite_/docs/screenshots/README.md).
+
+## Month 2 - TimeConnector
+
+A Django social media platform with:
+
+- Account registration, authentication, and member profiles.
+- Text and image posts, likes, comments, and audience controls.
+- Friend requests, following, blocking, and privacy protections.
+- Search, notifications, and live WebSocket updates.
+- Authenticated REST APIs and staff moderation tools.
+- A responsive Bootstrap interface and automated tests.
+
+The project documents local verification in its own README. Cloud deployment is pending; this repository does not claim a live production deployment.
+
+Explore the [source code](Social%20Media%20Platform%20Django/), [project README](Social%20Media%20Platform%20Django/README.md), and [functionality audit](Social%20Media%20Platform%20Django/docs/FUNCTIONAL_AUDIT.md).
+
+## Repository structure
 
 ```text
 Developers_Arena_Internship/
-|-- README.md
-|-- .gitattributes
-`-- personal_productivity_suite_/
+|-- README.md                         # Internship overview and monthly progress
+|-- docs/
+|   `-- internship/
+|       `-- OfferLetter_DevelopersArena.pdf
+|-- personal_productivity_suite_/      # Month 1
+|   |-- README.md
+|   |-- GUIDE.md
+|   |-- .gitignore
+|   |-- .gitattributes
+|   |-- main.py
+|   |-- docs/
+|   `-- tests/
+`-- Social Media Platform Django/     # Month 2: TimeConnector
     |-- README.md
-    |-- main.py
-    |-- calculator.py
-    |-- notes_manager.py
-    |-- timer.py
-    |-- file_organizer.py
-    |-- unit_converter.py
-    |-- backup_manager.py
-    |-- utils.py
-    |-- requirements.txt
-    |-- .gitignore
-    |-- data/
-    |   |-- notes.json
-    |   `-- backups/
+    |-- manage.py
     |-- docs/
-    |   |-- text/          # Installation, user, architecture, module guides
-    |   `-- screenshots/   # Nine PNGs and a README
-    |-- tests/            # Seven test modules
-    `-- examples/         # Sample notes, files, and organizer demo
+    `-- tests/
 ```
 
-`exports/` is created when needed. Python and pytest caches are generated files, excluded by the application's `.gitignore`.
+Months 3-6 will be documented here when their projects are added.
 
-## Structure assessment against the company brief
+## Getting started
 
-The layout is understandable for a small CLI, but does **not exactly match the final submission checklist**:
+Clone the repository:
 
-- The company places `main.py`, `requirements.txt`, `modules/`, `data/`, `docs/`, `tests/`, and `examples/` at the submission root. Here the application is one level below the internship repository root.
-- Tools are individual modules beside `main.py`; there is no `modules/` package. This matches the brief's earlier flat example, but differs from its final GitHub checklist.
-- The application files are tracked directly in this repository, so a normal clone includes them. The former nested Git history is preserved locally in the ignored `.local-git-backups/` folder.
-- `docs/text/` is a valid grouping; documentation links must include it. Screenshot filenames have spaces and inconsistent spelling/capitalization; the READMEs use the existing names.
+```powershell
+git clone https://github.com/Yashovardhan-Tripathi/Developers_Arena_Internship.git
+cd Developers_Arena_Internship
+```
 
-The application remains in its existing folder. Replacing the former Git reference with ordinary tracked files makes its current local contents available from this repository.
+Follow the setup instructions for the project you want to run:
 
-## Documentation and evidence
+- [Month 1: Productivity Suite setup](personal_productivity_suite_/README.md#project-and-launch)
+- [Month 2: TimeConnector setup](Social%20Media%20Platform%20Django/README.md#quick-start-windows-powershell)
 
-These links open application files in this repository on your GitHub profile:
+Each project has its own dependencies, configuration, and verification instructions.
 
-- [Application setup, usage, architecture, and requirement mapping](personal_productivity_suite_/README.md)
-- [Screenshot gallery](personal_productivity_suite_/docs/screenshots/README.md)
-- [User guide](personal_productivity_suite_/docs/text/user_guide.md)
-- [Architecture](personal_productivity_suite_/docs/text/architecture.md)
-- [Tests](personal_productivity_suite_/tests/)
-- [Examples](personal_productivity_suite_/examples/)
+## Learning and completion requirements
 
-The [TimeConnector Django project](Social%20Media%20Platform%20Django/README.md) is also included in this repository.
+The offer letter describes a program built around learning modules, practical projects, monthly task submissions, progress tracking, and review feedback. Evaluation considers task completion and quality, code quality and best practices, project implementation and documentation, and learning progress.
 
-The source contains 63 test functions. Tests were not executed during this README-only review, so no current pass count or runtime is claimed. Non-README guides were left unchanged and may retain older paths or test-result statements; use the README commands and an actual test run for current evidence.
+The letter states that certificate eligibility requires completion of **80% of tasks with satisfactory evaluations**. This task-based requirement is separate from the monthly project table above; the table does not calculate certificate eligibility. The internship is ongoing, and no completion certificate or final evaluation is claimed here.
+
+The offer letter also states that internship work remains the property of The Developers Arena unless otherwise specified in writing. This repository does not grant a separate license to that work.
+
+## Supporting document
+
+[View the official internship offer letter (PDF)](docs/internship/OfferLetter_DevelopersArena.pdf)
+
+The letter is the source for the program details and conditions. The monthly project mapping and remaining work reflect the intern's current progress.
