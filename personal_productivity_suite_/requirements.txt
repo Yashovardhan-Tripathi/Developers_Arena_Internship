@@ -1,0 +1,9 @@
+# Personal Productivity Suite
+# Requirements Specification
+
+# Core Application:
+# Pure Python 3 standard library is utilized for the entire suite.
+# No external third-party dependencies are required to run the main application.
+
+# Testing & Development:
+pytest>=7.4.0

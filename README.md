@@ -4,7 +4,7 @@ This repository contains the **Complete Personal Productivity Suite**, based on 
 
 ## Project and launch
 
-The application is in [`personal_productivity_suite_/`](https://github.com/ayushkr063/personal_productivity_suite/tree/main). The trailing underscore is part of the folder name.
+The application is in [`personal_productivity_suite_/`](personal_productivity_suite_/). The trailing underscore is part of the folder name. Its source, documentation, tests, and screenshots are tracked directly in this repository under **Yashovardhan-Tripathi**.
 
 ```powershell
 git clone https://github.com/Yashovardhan-Tripathi/Developers_Arena_Internship.git
@@ -35,7 +35,7 @@ python -m pip install -r requirements.txt
 python -m pytest -v
 ```
 
-On macOS/Linux, activate with `source .venv/bin/activate`. The dependency file contains `pytest>=7.4.0` for testing only. See the [application README](https://github.com/ayushkr063/personal_productivity_suite/blob/main/README.md) for usage and troubleshooting.
+On macOS/Linux, activate with `source .venv/bin/activate`. The dependency file contains `pytest>=7.4.0` for testing only. See the [application README](personal_productivity_suite_/README.md) for usage and troubleshooting.
 
 ## Current folder structure
 
@@ -73,20 +73,22 @@ The layout is understandable for a small CLI, but does **not exactly match the f
 
 - The company places `main.py`, `requirements.txt`, `modules/`, `data/`, `docs/`, `tests/`, and `examples/` at the submission root. Here the application is one level below the internship repository root.
 - Tools are individual modules beside `main.py`; there is no `modules/` package. This matches the brief's earlier flat example, but differs from its final GitHub checklist.
-- The local application directory has its own `.git` repository inside the outer repository. Decide whether to submit one repository or configure an explicit submodule. Nested Git metadata alone does not ensure that the outer repository publishes the application files.
+- The application files are tracked directly in this repository, so a normal clone includes them. The former nested Git history is preserved locally in the ignored `.local-git-backups/` folder.
 - `docs/text/` is a valid grouping; documentation links must include it. Screenshot filenames have spaces and inconsistent spelling/capitalization; the READMEs use the existing names.
 
-No folders, Git configuration, code, or sample data were reorganized during this README update. Any restructuring requires the owner's instruction.
+The application remains in its existing folder. Replacing the former Git reference with ordinary tracked files makes its current local contents available from this repository.
 
 ## Documentation and evidence
 
-These links open the published application repository configured as the local application's Git remote. The outer repository stores the application as a Git reference (gitlink), so relative links cannot traverse its files on GitHub. Published documentation may differ from the locally updated README files until those changes are committed and pushed to the application repository.
+These links open application files in this repository on your GitHub profile:
 
-- [Application setup, usage, architecture, and requirement mapping](https://github.com/ayushkr063/personal_productivity_suite/blob/main/README.md)
-- [Screenshot gallery](https://github.com/ayushkr063/personal_productivity_suite/blob/main/docs/screenshots/README.md)
-- [User guide](https://github.com/ayushkr063/personal_productivity_suite/blob/main/docs/text/user_guide.md)
-- [Architecture](https://github.com/ayushkr063/personal_productivity_suite/blob/main/docs/text/architecture.md)
-- [Tests](https://github.com/ayushkr063/personal_productivity_suite/tree/main/tests)
-- [Examples](https://github.com/ayushkr063/personal_productivity_suite/tree/main/examples)
+- [Application setup, usage, architecture, and requirement mapping](personal_productivity_suite_/README.md)
+- [Screenshot gallery](personal_productivity_suite_/docs/screenshots/README.md)
+- [User guide](personal_productivity_suite_/docs/text/user_guide.md)
+- [Architecture](personal_productivity_suite_/docs/text/architecture.md)
+- [Tests](personal_productivity_suite_/tests/)
+- [Examples](personal_productivity_suite_/examples/)
+
+The [TimeConnector Django project](Social%20Media%20Platform%20Django/README.md) is also included in this repository.
 
 The source contains 63 test functions. Tests were not executed during this README-only review, so no current pass count or runtime is claimed. Non-README guides were left unchanged and may retain older paths or test-result statements; use the README commands and an actual test run for current evidence.

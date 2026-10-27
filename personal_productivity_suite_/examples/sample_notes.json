@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Internship Onboarding Checklist",
+    "content": "1. Review Month 1 requirements\n2. Set up Git repository\n3. Implement modular tools in Python\n4. Write automated tests with pytest\n5. Prepare documentation for GitHub submission",
+    "created_at": "2026-10-08 09:00:00",
+    "updated_at": "2026-10-08 09:00:00"
+  },
+  {
+    "id": 2,
+    "title": "Useful Python Commands",
+    "content": "Run tests: python3 -m pytest -v\nRun app: python3 main.py\nCheck syntax: python3 -m py_compile *.py",
+    "created_at": "2026-10-08 09:30:00",
+    "updated_at": "2026-10-08 09:45:00"
+  },
+  {
+    "id": 3,
+    "title": "Productivity Goals",
+    "content": "Focus on high code quality, modular architecture, robust error handling, and clean CLI UX.",
+    "created_at": "2026-10-08 10:15:00",
+    "updated_at": "2026-10-08 10:15:00"
+  }
+]
