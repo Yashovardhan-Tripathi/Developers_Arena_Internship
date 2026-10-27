@@ -13,7 +13,6 @@ from rest_framework.throttling import AnonRateThrottle, ScopedRateThrottle
 from friends.models import Follow, FriendRequest
 from friends.services import friend_ids, people_for, request_friend, respond_request, set_block, set_follow
 from notifications.services import visible_notifications
-from posts.models import Post
 from posts.services import add_comment, feed_queryset, report_content, set_like, visible_comments
 from .serializers import CommentSerializer, FriendRequestSerializer, NotificationSerializer, PersonSerializer, PostSerializer, ProfileSerializer, ReportSerializer, SignupSerializer
 

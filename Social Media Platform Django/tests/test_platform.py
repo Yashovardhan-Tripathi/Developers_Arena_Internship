@@ -1,4 +1,3 @@
-import asyncio
 from io import BytesIO
 
 from asgiref.sync import async_to_sync
@@ -10,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import IntegrityError, transaction
-from django.test import Client, TestCase, TransactionTestCase, override_settings
+from django.test import Client, TestCase, TransactionTestCase
 from django.urls import path
 from PIL import Image
 from rest_framework.test import APIClient
@@ -22,7 +21,7 @@ from notifications.models import Notification
 from notifications.services import notify, visible_notifications
 from posts.forms import PostForm
 from posts.models import Comment, Like, Post, Report
-from posts.services import add_comment, set_like, visible_posts
+from posts.services import add_comment, visible_posts
 from users.validators import validate_image
 
 

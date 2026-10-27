@@ -13,7 +13,7 @@ from friends.models import Follow
 from friends.services import friend_ids, people_for
 from .forms import PostForm
 from rest_framework.decorators import api_view
-from .models import Comment, Post
+from .models import Post
 from .services import add_comment, feed_queryset, report_content, set_like, visible_comments, visible_posts
 
 
