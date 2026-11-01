@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "sequence",
+  "quality": "showcase",
+  "specification": {
+    "path": "G:\\Developers_Arena\\Developers_Arena_Internship\\Complete Data Analysis Portfolio\\.archify\\sequence-dashboard-sequence-20261031-153218\\candidate.json",
+    "sha256": "a10f45fb1e83fde2b23b956895c092782a953090bf5d8e5396eeec23fe517363",
+    "bytes": 2845
+  },
+  "artifact": {
+    "path": "G:\\Developers_Arena\\Developers_Arena_Internship\\Complete Data Analysis Portfolio\\.archify\\sequence-dashboard-sequence-20261031-153218\\dashboard-sequence.html",
+    "sha256": "d5bf2fc356a5a3038c3c08dd6240411b766233781d9e12d944b7f5c9975dbcf8",
+    "bytes": 831396
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "G:\\Developers_Arena\\Developers_Arena_Internship\\Complete Data Analysis Portfolio\\.archify\\sequence-dashboard-sequence-20261031-153218\\dashboard-sequence.finalize.json",
+    "summaryReceipt": "G:\\Developers_Arena\\Developers_Arena_Internship\\Complete Data Analysis Portfolio\\.archify\\sequence-dashboard-sequence-20261031-153218\\dashboard-sequence.finalize-summary.json",
+    "browserCheckReceipt": "G:\\Developers_Arena\\Developers_Arena_Internship\\Complete Data Analysis Portfolio\\.archify\\sequence-dashboard-sequence-20261031-153218\\dashboard-sequence.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-31T10:06:56.612Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 10906,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

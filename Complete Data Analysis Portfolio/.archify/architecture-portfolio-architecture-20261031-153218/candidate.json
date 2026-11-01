@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Proposed Portfolio Architecture",
+    "locale": "en",
+    "output": ".archify/architecture-portfolio-architecture-20261031-153218/portfolio-architecture.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "reader",
+      "type": "external",
+      "label": "Portfolio Reader",
+      "sublabel": "Reviewer or recruiter",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Interactive Dashboard",
+      "sublabel": "Streamlit / Plotly proposed",
+      "pos": [
+        370,
+        40
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "derived",
+      "type": "database",
+      "label": "Validated Outputs",
+      "sublabel": "Metrics and chart tables",
+      "pos": [
+        700,
+        40
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "reports",
+      "type": "frontend",
+      "label": "Reports and Slides",
+      "sublabel": "PDFs, summary, presentation",
+      "pos": [
+        1030,
+        40
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "source",
+      "type": "external",
+      "label": "Public Data Sources",
+      "sublabel": "Five domains; terms checked",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "raw",
+      "type": "database",
+      "label": "Raw Snapshots",
+      "sublabel": "Immutable datasets/raw/",
+      "pos": [
+        370,
+        260
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "analysis",
+      "type": "backend",
+      "label": "Analysis Pipeline",
+      "sublabel": "pandas and domain notebooks",
+      "pos": [
+        700,
+        260
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "models",
+      "type": "backend",
+      "label": "Predictive Evaluation",
+      "sublabel": "Only where suitable",
+      "pos": [
+        1030,
+        260
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "security",
+      "label": "Contracts and Quality",
+      "sublabel": "Schema, units, provenance",
+      "pos": [
+        370,
+        480
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "clean",
+      "type": "backend",
+      "label": "Data Preparation",
+      "sublabel": "Validated processed datasets",
+      "pos": [
+        700,
+        480
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "explore",
+      "from": "reader",
+      "to": "ui",
+      "label": "explore"
+    },
+    {
+      "id": "load",
+      "from": "ui",
+      "to": "derived",
+      "label": "read outputs"
+    },
+    {
+      "id": "publish",
+      "from": "derived",
+      "to": "reports",
+      "label": "supply results"
+    },
+    {
+      "id": "acquire",
+      "from": "source",
+      "to": "raw",
+      "label": "licensed snapshot"
+    },
+    {
+      "id": "prepare",
+      "from": "raw",
+      "to": "clean",
+      "label": "raw inputs"
+    },
+    {
+      "id": "curate",
+      "from": "clean",
+      "to": "analysis",
+      "label": "clean tables"
+    },
+    {
+      "id": "compute",
+      "from": "analysis",
+      "to": "derived",
+      "label": "validate and save"
+    },
+    {
+      "id": "predict",
+      "from": "analysis",
+      "to": "models",
+      "label": "if suitable"
+    },
+    {
+      "id": "scores",
+      "from": "models",
+      "to": "reports",
+      "label": "evaluated results"
+    },
+    {
+      "id": "enforce",
+      "from": "rules",
+      "to": "clean",
+      "label": "validate schema"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Planning basis",
+      "items": [
+        "Proposed system only; no application code exists.",
+        "Design sources: architecture.md sections 1–7; PRD.md FR-01–FR-12; Design.md.",
+        "Analysis pipeline covers sales, healthcare, sports, finance, and e-commerce.",
+        "Dashboard filters consume validated data; model fitting is offline.",
+        "Raw inputs remain unchanged; local files are storage, not deployed databases.",
+        "Five notebooks and at least 25 charts feed five reports, recommendations, master notebook and executive summary."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Proposed Offline Analysis Sequence",
+    "locale": "en",
+    "output": ".archify/sequence-analysis-sequence-20261031-153218/analysis-sequence.html",
+    "quality_profile": "showcase"
+  },
+  "participants": [
+    {
+      "id": "analyst",
+      "type": "external",
+      "label": "Analyst",
+      "sublabel": "Authorized work"
+    },
+    {
+      "id": "pipeline",
+      "type": "backend",
+      "label": "Pipeline",
+      "sublabel": "Prepare and analyze"
+    },
+    {
+      "id": "files",
+      "type": "database",
+      "label": "Local Files",
+      "sublabel": "Raw and processed"
+    },
+    {
+      "id": "outputs",
+      "type": "database",
+      "label": "Artifacts",
+      "sublabel": "Validated outputs"
+    }
+  ],
+  "messages": [
+    {
+      "id": "offline-1",
+      "from": "analyst",
+      "to": "pipeline",
+      "label": "Run domain analysis",
+      "variant": "default",
+      "y": 170
+    },
+    {
+      "id": "offline-2",
+      "from": "pipeline",
+      "to": "files",
+      "label": "Read source catalog and raw data",
+      "variant": "default",
+      "y": 255
+    },
+    {
+      "id": "offline-3",
+      "from": "files",
+      "to": "pipeline",
+      "label": "Source records and metadata",
+      "variant": "return",
+      "y": 340
+    },
+    {
+      "id": "offline-4",
+      "from": "pipeline",
+      "to": "files",
+      "label": "Write cleaned dataset",
+      "variant": "default",
+      "y": 425,
+      "note": "Validate schema; clean data without changing raw files."
+    },
+    {
+      "id": "offline-5",
+      "from": "files",
+      "to": "pipeline",
+      "label": "Clean snapshot ready",
+      "variant": "return",
+      "y": 510
+    },
+    {
+      "id": "offline-6",
+      "from": "pipeline",
+      "to": "outputs",
+      "label": "Save validated analysis outputs",
+      "variant": "emphasis",
+      "y": 595,
+      "note": "EDA and statistics; if suitable, split before preprocessing, evaluate against baseline, then validate outputs."
+    },
+    {
+      "id": "offline-7",
+      "from": "outputs",
+      "to": "pipeline",
+      "label": "Artifacts stored",
+      "variant": "return",
+      "y": 680
+    },
+    {
+      "id": "offline-8",
+      "from": "pipeline",
+      "to": "analyst",
+      "label": "Return findings and check results",
+      "variant": "return",
+      "y": 765
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Planning basis",
+      "items": [
+        "Proposed system only; no application code exists.",
+        "Run independently for all five domains. Statistical method and predictive suitability depend on selected data.",
+        "On input or output validation failure: stop, report the failure to the analyst, repair, then rerun; do not publish invalid outputs.",
+        "Notebooks, charts, reports and dashboard must use the same metric definitions and dataset version.",
+        "Message spacing illustrates ordering only, not measured duration."
+      ]
+    }
+  ]
+}
