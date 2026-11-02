@@ -149,4 +149,7 @@ Screenshots: capture actual completed views with descriptive filenames; do not u
 
 ## 12. Design acceptance
 
+
+
+
 Verify navigation, filter consistency, reset behavior, keyboard access, chart readability, empty/error states, data context, valid downloads, responsive layouts, and agreement with reports. Record tested behavior and any framework limitations in `docs/validation.md`.
