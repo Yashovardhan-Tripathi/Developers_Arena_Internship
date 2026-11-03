@@ -73,6 +73,7 @@ All metrics and filters below are candidates; display them only if supported by 
 
 Display prediction or segmentation sections only where implemented and evaluated. Show the baseline, evaluation period, metric, and limitations alongside predictive results.
 
+
 ## 6. Visual system
 
 | Element | Specification |
