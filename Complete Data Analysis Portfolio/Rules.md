@@ -1,12 +1,12 @@
 # Project Working Rules
 
-Status: Active documentation baseline.
-Last updated: 2026-10-31
+Status: Active implementation rules.
+Last updated: 2026-11-04
 
 ## 1. Authorization and scope
 
-1. The current authorized task covers the six planning documents, Archify planning diagrams, and an ECC Blueprint construction plan with review. It permits local documentation, diagram candidates, generated HTML, and verification receipts. Do not start dataset acquisition, application coding, dependency installation, analysis, dashboard development, or report generation until the user instructs implementation to begin.
-2. A later instruction to begin an agreed phase authorizes its ordinary reversible work. Do not repeatedly ask for permission already provided.
+1. The user authorized implementation to begin on 2026-11-04. Work proceeds phase-by-phase under `Phases.md` and the scope in `PRD.md`, following `Design.md` and `architecture.md`.
+2. This authorization includes ordinary reversible local data acquisition, project code, setup, and analysis required by the active phase. Do not repeatedly ask for permission already provided.
 3. Follow the user's latest explicit boundaries. Surface material changes to agreed scope before carrying out dependent work.
 4. Keep work within this project directory unless the user authorizes another location.
 5. Do not modify sibling internship projects, parent documentation, remotes, or account ownership as part of this project.

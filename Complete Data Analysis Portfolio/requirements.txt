@@ -1,0 +1,13 @@
+# Verified in the existing Python 3.13.9 environment on 2026-11-04.
+# Recreate with: python -m pip install -r requirements.txt
+pandas==3.0.5
+numpy==2.5.3
+scipy==1.16.3
+matplotlib==3.10.6
+seaborn==0.13.2
+scikit-learn==1.7.2
+streamlit==1.63.0
+plotly==7.0.0
+openpyxl==3.1.5
+nbconvert==7.16.6
+jupyter==1.1.1

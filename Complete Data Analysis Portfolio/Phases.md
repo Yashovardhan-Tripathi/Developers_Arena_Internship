@@ -1,7 +1,7 @@
 # Project Phases
 
-Status: Planning complete for initial review; implementation is not authorized yet.
-Last updated: 2026-10-31
+Status: Phase 1 authorized and underway.
+Last updated: 2026-11-04
 
 ## Execution model
 
@@ -12,7 +12,7 @@ Each phase records inputs, work, deliverables, and exit criteria. A phase starts
 | Phase | Scope | Dependency | Initial status |
 | --- | --- | --- | --- |
 | 0 | Planning baseline | Supplied brief | Drafted for user review |
-| 1 | Dataset selection and project foundation | Implementation instruction | Not started |
+| 1 | Dataset selection and project foundation | User instruction received 2026-11-04 | In progress |
 | 2 | Sales analysis | Phase 1 and suitable sales data | Not started |
 | 3 | Healthcare analysis | Phase 1 and suitable healthcare data | Not started |
 | 4 | Sports analysis | Phase 1 and suitable sports data | Not started |
@@ -24,17 +24,17 @@ Each phase records inputs, work, deliverables, and exit criteria. A phase starts
 
 ## Phase 0 — Planning baseline
 
-Inputs: supplied project requirements and current documentation-only instruction.
+Inputs: supplied project requirements and user authorization to begin implementation on 2026-11-04.
 
 Work: capture scope, resolve brief inconsistencies through explicit assumptions, propose architecture and UI, establish boundaries, and record project state.
 
 Deliverables: `PRD.md`, `architecture.md`, `Rules.md`, `Phases.md`, `Design.md`, and `Memory.md`.
 
-Exit: six consistent documents are available for review, and no implementation is presented as completed. The next phase waits for the user's implementation instruction.
+Exit: planning documents and reviewed workflow are consistent. The next phase begins after explicit implementation authorization.
 
 ## Phase 1 — Dataset selection and foundation
 
-Inputs: implementation authorization and planning baseline.
+Inputs: implementation authorization received 2026-11-04 and planning baseline.
 
 Work:
 
@@ -45,9 +45,11 @@ Work:
 5. Create the needed folder structure, environment instructions, dependency file, and data catalog.
 6. Establish source schemas, shared output contracts, chart inventory, and initial reproducible loading/cleaning helpers.
 
+Progress on 2026-11-04: public source snapshots were downloaded and locally profiled for sales, healthcare, sports, and e-commerce. Their SHA-256, byte sizes, row counts, columns, and sample missingness are recorded in `datasets/catalog.csv` and `docs/data_dictionary.md`. Finance remains pending because the full Kaggle archive is about 809 MB and a small ticker subset/file path has not yet been verified. Setup, download, and raw-input inspection interfaces now exist; no domain analysis has started.
+
 Deliverables: dataset catalog, retrieval guidance, schema notes, initial setup documentation, and working preparation path.
 
-Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data.
+Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. Do not mark complete until finance input, clean-environment setup, nested-notebook/kernel contract, and fixture-backed output interfaces are verified. The current workstation's packages were inspected, but no clean environment was created.
 
 ## Common completion checklist for Phases 2–6
 
