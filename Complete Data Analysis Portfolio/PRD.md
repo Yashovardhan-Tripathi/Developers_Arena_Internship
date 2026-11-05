@@ -85,7 +85,7 @@ GitHub publication is a later action requiring an explicit user instruction; pre
 | Topic | Planning treatment |
 | --- | --- |
 | 20+ versus 25+ visualizations | Use the stricter 25+ target; repeated exports of the same chart count once |
-| Dashboard required versus optional | Include a local unified dashboard in the plan; confirm scope before building it |
+| Dashboard required versus optional | Include a local unified dashboard; user authorized implementation according to the design on 2026-11-04 |
 | Five domains described as options | Treat all five as required because the objective and submission list specify them |
 | Sample output numbers | Illustrations only; never copy into findings without computed evidence |
 | Dataset size | No mandatory minimum; the sample 5.2 million records is not an acceptance criterion |

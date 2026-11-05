@@ -7,7 +7,7 @@ Last updated: 2026-11-04
 
 Use a local Python analytics workflow with five domain notebooks, reusable preparation and plotting helpers, saved analysis outputs, and a unified dashboard. The dashboard reads validated derived outputs; it should not retrain models during user interactions. No backend service or database is currently required.
 
-Proposed stack: pandas and NumPy for processing, Matplotlib/Seaborn for static figures, SciPy for statistical methods, scikit-learn for suitable predictive work, and Streamlit/Plotly for the dashboard. These are planning choices, not installed dependencies. Choose PDF and slide generation tooling during reporting preparation.
+Current stack: pandas and NumPy for processing, Matplotlib/Seaborn for static figures, SciPy for statistical methods, scikit-learn for suitable predictive work, and Streamlit/Plotly for the dashboard. Versions are pinned in `requirements.txt` and installed in the project `.venv` as of 2026-11-04. Choose PDF and slide generation tooling during reporting preparation.
 
 ## 2. Proposed directory tree
 
@@ -46,6 +46,8 @@ Complete Data Analysis Portfolio/
 |   `-- processed/<domain>/
 |-- src/
 |   |-- __init__.py
+|   |-- paths.py
+|   |-- contracts.py
 |   |-- data_io.py
 |   |-- cleaning.py
 |   |-- statistics.py
@@ -88,14 +90,18 @@ Complete Data Analysis Portfolio/
 |   `-- assets/
 |-- docs/
 |   |-- setup.md
+|   |-- notebook-template.md
 |   |-- methodology.md
 |   |-- data_dictionary.md
 |   |-- validation.md
+|   |-- fixtures/root_resolution.ipynb
 |   |-- acceptance_matrix.md
 |   `-- screenshots/
 |-- scripts/
+|   |-- download_sources.py
 |   |-- prepare_data.py
 |   |-- build_outputs.py
+|   |-- verify_notebook_contract.py
 |   `-- validate_artifacts.py
 `-- tests/
     |-- test_cleaning.py
@@ -103,7 +109,7 @@ Complete Data Analysis Portfolio/
     `-- test_output_contracts.py
 ```
 
-`<domain>` means `sales`, `healthcare`, `sports`, `finance`, or `ecommerce`. Angle-bracket paths are placeholders, not literal directory names. Create files only when needed in an authorized phase. Model artifacts exist only for justified predictive work.
+`<domain>` means `sales`, `healthcare`, `sports`, `finance`, or `ecommerce`. Angle-bracket paths are placeholders, not literal directory names. This is the target structure, not a claim that every listed artifact exists. Create files only when needed in an authorized phase. Model artifacts exist only for justified predictive work. The `tests/` paths describe planned focused coverage; no project test suite has been added or run.
 
 ## 3. Responsibilities
 
@@ -117,10 +123,12 @@ Complete Data Analysis Portfolio/
 | `datasets/raw/` | Original input snapshots; preserve unchanged and redistribute only when permitted |
 | `datasets/processed/` | Reproducible cleaned datasets, regenerated from documented inputs |
 | `datasets/catalog.csv` | Dataset ID, domain, origin, retrieval date, version, usage terms, path, and checksum when available |
-| `src/data_io.py` | Project-relative paths, loading, schema checks, and consistent output serialization |
-| `src/cleaning.py` | Repeated cleaning utilities; domain policy remains explicit in domain modules |
-| `src/statistics.py` | Reused statistical calculations with assumptions and input validation |
-| `src/visualization.py` | Shared themes, labels, formatting, export behavior, and chart accessibility conventions |
+| `src/paths.py` | Project-root discovery and safe canonical artifact paths |
+| `src/contracts.py` | Versioned metric metadata and domain chart manifest contracts, including schema validation |
+| `src/data_io.py` | Project-relative raw loading and processed CSV output |
+| `src/cleaning.py` | Reusable quality profiling and explicit unknown-token normalization |
+| `src/statistics.py` | Reusable descriptive statistics and uncertainty helpers; method assumptions remain domain-specific |
+| `src/visualization.py` | Consistent static chart artifact saving |
 | `src/domains/` | Domain transformations and metric calculations shared by notebooks and output generation |
 | `dashboard/app.py` | Portfolio landing page and navigation entry point |
 | `dashboard/components.py` | Shared KPI cards, source labels, filter summaries, and empty-state rendering |
@@ -135,7 +143,7 @@ Complete Data Analysis Portfolio/
 | `executive_summary.pdf` | Portfolio-wide nontechnical summary; avoid duplicating this canonical file elsewhere |
 | `presentation/` | Slide outline, final deck, and supporting assets |
 | `docs/` | Setup, methodology, dictionaries, checks, screenshots, and acceptance evidence |
-| `scripts/` | Documented preparation, output generation, and artifact checks |
+| `scripts/` | Documented preparation, output generation, and artifact checks, including metrics and chart manifest schema checks when files exist |
 | `tests/` | Focused tests for consequential transformations, metric logic, and output contracts |
 
 ## 4. Data flow
@@ -164,7 +172,7 @@ This diagram describes the intended architecture, not existing implemented compo
 - Filterable dashboard metrics must be computed from compatible detail or grouped data. A fixed snapshot must not appear to respond to filters it does not support.
 - Model results: baseline, split strategy, features, evaluation window, metric definitions, scores, and limitations. Link to artifacts only if created.
 - `visualizations/inventory.csv`: chart ID, domain, title, question answered, chart type, input source, output path, and report reference.
-- Choose CSV versus Parquet after assessing dataset sizes and runtime requirements; document the choice before implementing consumers.
+- Phase 1 uses CSV for processed tables because it is transparent to inspect and works with the current pandas I/O contract. Revisit if measured output size or dashboard performance shows CSV is inadequate.
 
 ## 6. Execution and artifact ownership
 

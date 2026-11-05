@@ -45,11 +45,11 @@ Work:
 5. Create the needed folder structure, environment instructions, dependency file, and data catalog.
 6. Establish source schemas, shared output contracts, chart inventory, and initial reproducible loading/cleaning helpers.
 
-Progress on 2026-11-04: public source snapshots were downloaded and locally profiled for sales, healthcare, sports, and e-commerce. Their SHA-256, byte sizes, row counts, columns, and sample missingness are recorded in `datasets/catalog.csv` and `docs/data_dictionary.md`. Finance remains pending because the full Kaggle archive is about 809 MB and a small ticker subset/file path has not yet been verified. Setup, download, and raw-input inspection interfaces now exist; no domain analysis has started.
+Progress on 2026-11-04: all five domains have downloaded inputs and local schema/quality profiles; sports has separate team-game Elo and player-season RAPTOR sources. SHA-256, byte sizes, row counts, columns, blank/literal-unknown counts, source terms, and limitations are in `datasets/catalog.csv`, `datasets/README.md`, and `docs/data_dictionary.md`. Root resolution, raw/processed I/O, quality/statistics/chart helpers, metric/chart schema validators, and phase-aware build/validation CLIs now exist. The clean `.venv` is installed and `pip check` passes. Nested root logic passed from a normal Python process, but Jupyter kernel/nbconvert execution hit a Windows DLL relocation/stall and remains unverified. The latest shared contract changes have not been runtime-validated. Full evidence is in `docs/validation.md`. No domain analysis has started. A recovery snapshot is recorded at `.checkpoints/S1-before-shared-contracts-2026-11-04/` (raw data excluded and preserved separately).
 
 Deliverables: dataset catalog, retrieval guidance, schema notes, initial setup documentation, and working preparation path.
 
-Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. Do not mark complete until finance input, clean-environment setup, nested-notebook/kernel contract, and fixture-backed output interfaces are verified. The current workstation's packages were inspected, but no clean environment was created.
+Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. Do not mark complete until the nested-notebook/kernel contract, shared output/CLI interfaces, and the phase's verification evidence are complete.
 
 ## Common completion checklist for Phases 2–6
 

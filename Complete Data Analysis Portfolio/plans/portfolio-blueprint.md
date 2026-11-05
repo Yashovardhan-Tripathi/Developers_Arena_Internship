@@ -1,13 +1,13 @@
 # Complete Data Analysis Portfolio — Construction Blueprint
 
-Version: 1.1, 2026-10-31. Status: Reviewed construction plan; implementation not authorized.
-Scope: construction planning and diagrams only; implementation remains unstarted.
+Version: 1.2, 2026-11-04. Status: Reviewed construction plan; Phase 1 implementation underway after user authorization on 2026-11-04.
+Scope: staged local implementation under the user's instruction to follow the design and workflow. Commit, push, publication, deployment, and paid-service work remain unauthorized.
 
 ## Objective and source of truth
 
-Deliver five reproducible domain projects, five notebooks, five PDF reports, 25+ useful visualizations, recommendations, master notebook, executive summary, slides, documentation, and a proposed unified local dashboard. Read `PRD.md`, `Rules.md`, `architecture.md`, `Design.md`, `Phases.md`, and `Memory.md` in this project before executing any step. These documents describe requirements and proposed components, not existing software.
+Deliver five reproducible domain projects, five notebooks, five PDF reports, 25+ useful visualizations, recommendations, master notebook, executive summary, slides, documentation, and the planned unified local dashboard. Read `PRD.md`, `Rules.md`, `architecture.md`, `Design.md`, `Phases.md`, and `Memory.md` before each phase. Requirements and proposed components must be distinguished from completed outputs.
 
-All paths below are relative to the project root unless explicitly described otherwise. Each numbered step is one independently reviewable change set. No commits, branches, PRs, installs, dataset downloads, or application code are authorized by this planning request.
+All paths below are relative to the project root unless explicitly described otherwise. Each numbered step is one independently reviewable change set. The user has authorized local implementation and data acquisition phase-by-phase; no commits, branches, PRs, pushes, deployment, or paid services are authorized.
 
 ## Preflight evidence
 
@@ -25,7 +25,7 @@ All paths below are relative to the project root unless explicitly described oth
 4. Every predictive pipeline addresses temporal/entity leakage and compares to a suitable baseline.
 5. Notebooks, reports, and dashboard share metric definitions and data versions.
 6. Missing data is not zero; simulated data is visibly labeled; sensitive data and secrets are excluded.
-7. Step completion requires real evidence. Commands below are future verification contracts, not checks already run.
+7. Step completion requires real evidence. Verification commands below are phase contracts; actual commands and outcomes are recorded in `docs/validation.md`.
 
 ## Dependency graph
 
@@ -52,7 +52,7 @@ S2–S6 are parallel candidates after S1 only if they own disjoint domain paths.
 
 ## Verification command conventions
 
-Use PowerShell from the project root with a verified environment active. S1 must implement and document the following CLI contracts, or update this plan and every consumer before marking S1 complete:
+Use PowerShell from the project root with the project environment active. These CLI contracts are implemented; recorded Phase 1 outcomes are in `docs/validation.md`. Run relevant commands for the current phase and record actual results:
 
 ```powershell
 python scripts/prepare_data.py --domain sales --check-only
@@ -65,7 +65,7 @@ python -m jupyter nbconvert --to notebook --execute --inplace project1_sales_ana
 python -m streamlit run dashboard/app.py
 ```
 
-`--check-only` validates existing local inputs without downloading, modifying raw files, or building outputs. `--domain` accepts sales, healthcare, sports, finance, or ecommerce. `--all` runs all domains. `--submission` additionally checks all final artifacts, local links, chart inventory, and counts. Partial domain validation must not require unfinished domains. Scripts are proposed and do not exist yet. Notebook execution must be deterministic and must not append duplicate chart inventory entries.
+`--check-only` validates existing local inputs without downloading, modifying raw files, or building outputs. `--domain` accepts sales, healthcare, sports, finance, or ecommerce. `--all` runs all domains. `--submission` checks required final artifact paths. Partial domain validation must not require unfinished domains. The artifact validator checks required paths and validates metrics/chart schemas when those files exist; local-link and chart-count validation remain final acceptance work. Notebook execution must be deterministic and must not append duplicate chart inventory entries.
 
 Validation levels are explicitly separate:
 
@@ -76,7 +76,7 @@ Validation levels are explicitly separate:
 
 Notebook execution contract: S1 must document the selected environment/kernel and a tested project-root resolution strategy. Each nested notebook resolves the root by finding this project's `PRD.md` plus `src/`, makes shared imports available, and resolves data/output paths from that root rather than the kernel's starting directory. Register a dedicated kernel in an authorized local environment or pass an explicitly verified kernel name to nbconvert; update commands in `docs/setup.md`. Verify the contract with a minimal nested fixture notebook before domain work. Notebook metadata alone is not evidence that the kernel matches the active environment.
 
-Recovery contract: before each authorized implementation step, capture existing owned files and a manifest of new paths in a project-local ignored checkpoint (or record a later user-authorized commit as the recovery base). Record its path and date in project memory. Checkpoints are future implementation safeguards and are not created during this planning task. Restore only explicitly reviewed owned paths, compare against intervening user edits, preserve raw data, and never automatically delete newly created files. The rollback instructions below refer to this recorded recovery base.
+Recovery contract: before each authorized implementation step, capture existing owned files and a manifest of new paths in a project-local ignored checkpoint (or record a later user-authorized commit as the recovery base). Record its path and date in project memory. The S1 shared-contract work has a recovery snapshot at `.checkpoints/S1-before-shared-contracts-2026-11-04/`; it excludes raw data. Restore only explicitly reviewed owned paths, compare against intervening user edits, preserve raw data, and never automatically delete newly created files. The rollback instructions below refer to this recorded recovery base.
 
 Domain contributors own `visualizations/<domain>/manifest.csv` and may add tests under `tests/<domain>/`. Shared tests remain integrator-owned. Each manifest uses the same chart inventory fields defined in architecture.md; S7 merges manifests after checking IDs, paths, purposes, and duplicates.
 
@@ -84,7 +84,9 @@ Domain contributors own `visualizations/<domain>/manifest.csv` and may add tests
 
 Dependencies: user instruction to implement. Phase mapping: Phase 1. Model tier for future execution: strongest available for contracts and dataset suitability.
 
-Context brief: This portfolio needs five distinct domains and reproducible local outputs. The project currently has planning files only. The parent repository contains unrelated internship work; do not change it. Dashboard tools and datasets remain provisional.
+Context brief: This portfolio needs five distinct domains and reproducible local outputs. The parent repository contains unrelated internship work; do not change it. Dashboard tools and datasets were provisional at planning time and are now selected for local implementation.
+
+Implementation status (2026-11-04): all five domain inputs are downloaded/profiled, and the local environment, setup files, reusable helpers, metric/chart contracts, and phase-aware CLIs exist. The project-local `.venv` installed pinned requirements and representative data loading passed. Nested root resolution works in ordinary Python; fresh-kernel execution remains blocked by Windows `WinError 623` during Jupyter startup. Shared contract validation was strengthened in source, but no fixture/runtime check has been run for this latest change. `docs/validation.md` records commands and outcomes. S1 remains open pending fresh-kernel verification and contract validation. The project path sits inside a parent repository; current Git status could not be read because the configured worktree path is unavailable in this shell.
 
 Owned paths: project-local `requirements.txt`, `.gitignore`, `datasets/README.md`, `datasets/catalog.csv`, `docs/setup.md`, `docs/data_dictionary.md`, initial `src/`, `scripts/`, `tests/`, and output schemas. Do not create dummy reports or pretend scripts have passed.
 
@@ -95,7 +97,7 @@ Tasks:
 3. Freeze dataset IDs and raw snapshots; write retrieval instructions for sources that cannot be redistributed.
 4. Define shared metrics/metadata/chart-table contracts, domain dictionary conventions, and error behavior.
 5. Build minimal common I/O, cleaning, statistical, and chart helpers plus CLI contracts above. Use fixtures to validate them before real outputs exist.
-6. Document actual environment setup and checked versions. No package installation is part of the present planning task.
+6. Document actual environment setup and checked versions in the isolated project environment.
 
 Verification: inspect provenance and dictionaries for all five sources; run `python -m pytest tests/test_cleaning.py tests/test_output_contracts.py`; run `python scripts/prepare_data.py --domain <domain> --check-only` once per selected domain, substituting an actual domain name.
 

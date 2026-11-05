@@ -2,7 +2,7 @@
 
 ## Environment
 
-The existing environment was inspected on 2026-11-04: Python 3.13.9 and the exact package versions in the project-root `requirements.txt` are present. This is an observed workstation environment, not yet a clean-machine reproduction.
+The existing environment was inspected on 2026-11-04: Python 3.13.9 and the exact package versions in the project-root `requirements.txt` are present. The project kernel dependency is pinned as well.
 
 For a separate environment, from the project root:
 
@@ -25,4 +25,4 @@ Run commands from the repository root. Notebooks will use a small root-resolutio
 
 ## Preparation status
 
-The preparation commands will be documented after the source files and preparation interface exist. Phase 1 is in progress; no analysis outputs or dataset findings are available yet.
+The package set is installed and checked in the project-local `.venv` using Python 3.13.9. The portfolio kernel is registered under `.venv/share/jupyter/kernels/portfolio`. The nested fixture execution remains to be verified; no analysis outputs or dataset findings are available yet.
