@@ -1,21 +1,18 @@
 # Project Memory and Working State
 
-## Latest implementation status — 2026-11-06
+## Latest implementation status — 2026-11-07
 
 The user authorized implementation according to the project design and asked to complete all deliverables. Generated artifacts now include five domain analyses and notebook files, derived tables and metric records, 25 charts and chart inventory, five recommendation notes, five seven-page domain PDF reports, Streamlit dashboard, portfolio summary notebook, three-page executive summary PDF, eight-slide presentation, methodology, README navigation, and acceptance matrix.
 
-All five builders ran against local raw snapshots. Their notebooks call those builders and have captured outputs from in-process execution. **Fresh-kernel notebook execution remains unverified**: `scripts/verify_notebook_contract.py` hangs at Jupyter kernel startup in the project `.venv` after PATH cleanup and prior environment adjustments; it was interrupted after more than 70 seconds. Do not call these notebooks independently kernel-verified.
+All five builders ran against local raw snapshots and were rerun in a newly created environment installed from pinned requirements. The clean environment's `pip check`, compile step, five domain builds, all six notebook executions, five PDF renders, and submission artifact validation passed. Validation reported READY with zero missing paths. A cross-artifact review found and corrected sports holdout accuracy rounding; the metric, narratives, executive summary, and slide now show 66.4%. All five recommendation findings/actions/limitations/monitoring measures were reconciled to domain metrics and narratives. A local link check scanned 42 Markdown files with no broken relative links. `jupyter kernelspec list` still produces Windows WinError 623, but the project's execution script successfully launched the registered kernel for all notebooks. Dashboard filter changes/reset were verified for all five domains; no-match/reset recovery passed on four. Responsive checks at 390, 1024, and 1440 CSS pixels found no horizontal overflow. Remaining: broader screen-reader/accessibility coverage and browser simulation of missing/corrupt-input recovery. Evidence is in `docs/acceptance_matrix.md` and `docs/validation.md`.
 
-The project interpreter `.venv\Scripts\python.exe -m pip check` passes. `compileall` completed. `scripts/validate_artifacts.py --all --submission` reports all required paths present and validates the five metric and chart contracts. Structural checks confirmed all six notebooks validate and have one executed code cell each, 25 unique chart IDs whose image files exist, six PDFs with valid signatures and expected page counts, and an eight-slide PPTX. Structural PDF checks are not visual review.
+The project interpreter `.venv\Scripts\python.exe -m pip check` passes. `compileall` completed. The final artifact validator reports all required paths present and validates the five metric and chart contracts. Structural checks confirmed all six notebooks validate and have fresh-kernel outputs, 25 unique chart IDs whose image files exist, six PDFs with valid signatures and expected page counts, and an eight-slide PPTX. All five report covers, all 25 chart pages, all five recommendation/source pages, all three executive-summary pages, and all eight presentation slides were visually reviewed. Presentation slide content and text-box bounds were also structurally checked.
 
-Browser review confirmed the dashboard overview and each domain page render. Sales, healthcare, sports, finance, and e-commerce displayed their filters/KPIs/charts; broader filter interaction, keyboard navigation, responsive viewports, and empty/error states remain unchecked. The `docs/screenshots/` folder has no accepted captured image files. No commit, push, deployment, or publication has occurred. See `docs/acceptance_matrix.md` and `docs/validation.md` for evidence.
+Browser review confirmed the dashboard overview and each domain page render in the documented light palette. Six desktop screenshots and one mobile screenshot are saved under `docs/screenshots/`. Filter/reset interactions were checked across the five domains; no-match/reset recovery was observed on four. Responsive checks at 390, 1024, and 1440 CSS pixels found no horizontal page overflow; sidebar Tab/ArrowDown navigation works. A local link check passed for 19 Markdown files before final prose edits. No commit, push, deployment, or publication has occurred. See `docs/acceptance_matrix.md` and `docs/validation.md` for evidence.
 
-## Next actions
+## Handoff
 
-1. Resolve Windows Jupyter kernel startup or use another documented kernel environment, then execute all six notebooks from fresh kernels.
-2. Save dashboard screenshots under `docs/screenshots/`, complete filter/keyboard/viewport/error-state browser review, and inspect every report and slide page visually.
-3. Reconcile findings and navigation links across notebooks, reports, dashboard, executive summary, and presentation; rerun the final artifact validator after any changes.
-4. Update acceptance status only when each gate has direct evidence.
+Required local deliverables and acceptance checks are complete. Optional follow-up: direct screen-reader assessment. Parent-repository Git status and diff whitespace were checked after escalation; the listed modifications and untracked paths were all inside this project folder, and no whitespace errors were reported. No commit, push, deployment, or publication was performed.
 
 ---
 

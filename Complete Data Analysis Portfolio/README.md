@@ -4,7 +4,7 @@ A reproducible portfolio of five evidence based analyses: business sales, health
 
 ## Status
 
-All five domain pipelines have produced notebooks, analysis outputs, five charts each, report PDFs, and finding-linked recommendation documents. The integrated dashboard, portfolio notebook, executive summary, and presentation are also generated. Final acceptance remains open: domain notebooks have been executed in-process, but a fresh Jupyter kernel has not yet completed on this Windows environment; dashboard page, accessibility, responsive layout, and screenshot checks are still being completed. See [`docs/acceptance_matrix.md`](docs/acceptance_matrix.md) and [`docs/validation.md`](docs/validation.md) for evidence and limitations.
+The five domain analyses, notebooks, chart inventory, recommendations, PDF reports, unified dashboard, portfolio summary, executive summary, and presentation are complete. A clean environment reproduced the full build and all six notebooks; final artifact validation reported READY. All report, summary, and presentation pages were visually reviewed. Dashboard filters, reset, no-match, and missing/malformed-input recovery were checked; selected findings and recommendations were reconciled across outputs. A direct screen-reader assessment was not performed. See [`docs/acceptance_matrix.md`](docs/acceptance_matrix.md) and [`docs/validation.md`](docs/validation.md) for evidence and limitations.
 
 ## Explore
 
@@ -15,6 +15,7 @@ All five domain pipelines have produced notebooks, analysis outputs, five charts
 - [E-commerce notebook](project5_ecommerce_analytics/analysis.ipynb) · [report](reports/project_ecommerce_report.pdf) · [recommendations](recommendations/ecommerce.md)
 - [Portfolio summary notebook](portfolio_summary.ipynb) · [executive summary](executive_summary.pdf) · [presentation](presentation/portfolio_presentation.pptx)
 - [Chart inventory](visualizations/inventory.csv) · [Methodology](docs/methodology.md) · [Data catalog](datasets/catalog.csv)
+- [Dashboard screenshots](docs/screenshots/README.md)
 
 ## Run locally
 
@@ -23,6 +24,7 @@ Follow [`docs/setup.md`](docs/setup.md), then from the project root:
 ```powershell
 python scripts/build_outputs.py --domain all
 python scripts/merge_chart_inventory.py
+python scripts/execute_notebooks.py
 python scripts/render_reports.py
 python scripts/validate_artifacts.py --all --submission
 python -m streamlit run dashboard/app.py

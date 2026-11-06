@@ -1,13 +1,13 @@
 # UI/UX and Presentation Design
 
-Status: Proposed experience specification; no UI has been implemented.
-Last updated: 2026-10-31
+Status: Implemented against this specification; required interaction, keyboard, responsive, and text-contrast checks passed. Direct screen-reader assessment was not performed.
+Last updated: 2026-11-07
 
 ## 1. Experience goals
 
 Make five domain analyses easy to explore and evaluate. A reader should quickly understand the question, data coverage, main findings, supporting charts, recommendations, and limitations. Use a consistent visual identity while respecting domain-specific metrics and units.
 
-The planned UI is a local Streamlit dashboard with Plotly charts. Final tool selection remains provisional. Reports, notebooks, slides, and README navigation share the same naming and formatting conventions.
+The dashboard is a local Streamlit application with Plotly charts. Its palette and page structure follow this specification. Reports, notebooks, slides, and README navigation share the same naming and formatting conventions.
 
 ## 2. Information architecture
 
@@ -153,4 +153,4 @@ Screenshots: capture actual completed views with descriptive filenames; do not u
 
 
 
-Verify navigation, filter consistency, reset behavior, keyboard access, chart readability, empty/error states, data context, valid downloads, responsive layouts, and agreement with reports. Record tested behavior and any framework limitations in `docs/validation.md`.
+Acceptance checkpoint (2026-11-07): all six navigation views render; source, coverage, and limitations are visible; filtered downloads are provided; reset controls are implemented and exercised on all five domain pages. No-match and reset behavior was exercised on four domain pages. Keyboard navigation works for the sidebar and the sports season slider. Missing and malformed metrics inputs displayed recovery messages in Streamlit AppTest. At 1440 px and 1024 px, the page has no horizontal overflow; at 390 px, KPI cards stack and charts fit the viewport. Direct screen-reader/accessibility assessment remains open; evidence and limitations are recorded in `docs/validation.md`.

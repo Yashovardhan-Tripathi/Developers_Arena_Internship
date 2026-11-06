@@ -43,6 +43,13 @@ def load_table(relative_path:str,parse_dates:tuple[str,...]=())->pd.DataFrame:
 def metric_lookup(domain:str)->dict[str,dict]:
     return {x["metric_id"]:x for x in load_metrics(domain)["metrics"]}
 
+def clear_filter_state(keys:tuple[str,...])->None:
+    for key in keys:
+        st.session_state.pop(key,None)
+
+def reset_filters(domain:str,keys:tuple[str,...])->None:
+    st.sidebar.button("Reset filters",key=f"reset_{domain}",on_click=clear_filter_state,args=(keys,))
+
 def metric_row(items:list[tuple[str,str,str]],domain:str)->None:
     metrics=metric_lookup(domain);cols=st.columns(len(items))
     for col,(key,label,fmt) in zip(cols,items):
@@ -61,7 +68,8 @@ def metric_row(items:list[tuple[str,str,str]],domain:str)->None:
 def source_note(domain:str)->None:
     doc=load_metrics(domain)
     coverage=" · ".join(f"{key.replace('_',' ').title()}: {value}" for key,value in doc.get("coverage",{}).items() if value is not None)
-    st.caption(f"Data snapshot: {', '.join(doc.get('dataset_snapshots',{}).keys())} · {coverage}")
+    st.caption(f"Data snapshot: {', '.join(doc.get('dataset_snapshots',{}).keys())}")
+    st.caption(f"Coverage: {coverage}")
     limitations=doc.get("limitations",[])
     if limitations:
         with st.expander("Sources, methods, and limitations"):
@@ -132,10 +140,11 @@ def sales_page()->None:
     try: df=load_table("datasets/processed/sales/sales_lines.csv",("InvoiceDate",))
     except Exception as exc: st.error(str(exc));return
     st.sidebar.subheader("Sales filters")
+    reset_filters(domain,("sales_year","sales_countries"))
     years=sorted(df["year"].dropna().astype(int).unique())
-    yr=st.sidebar.selectbox("Invoice year",years,index=len(years)-1)
+    yr=st.sidebar.selectbox("Invoice year",years,index=len(years)-1,key="sales_year")
     countries=sorted(df["Country"].dropna().astype(str).unique())
-    chosen=st.sidebar.multiselect("Countries",countries,default=countries[:min(8,len(countries))],help="Choose countries; clear the selection to include all countries.")
+    chosen=st.sidebar.multiselect("Countries",countries,default=countries[:min(8,len(countries))],help="Choose countries; clear the selection to include all countries.",key="sales_countries")
     data=df.loc[df["year"].eq(yr)]
     if chosen: data=data.loc[data["Country"].isin(chosen)]
     if data.empty: st.warning("No sales lines match these filters. Reset or widen the selection.");return
@@ -154,10 +163,11 @@ def healthcare_page()->None:
     try: df=load_table("datasets/processed/healthcare/eligible_encounters_deidentified.csv")
     except Exception as exc: st.error(str(exc));return
     st.sidebar.subheader("Encounter filters")
+    reset_filters(domain,("healthcare_ages","healthcare_genders"))
     ages=sorted(df["age"].dropna().astype(str).unique())
-    selected_age=st.sidebar.multiselect("Age bands",ages,default=ages)
+    selected_age=st.sidebar.multiselect("Age bands",ages,default=ages,key="healthcare_ages")
     genders=sorted(df["gender"].dropna().astype(str).unique())
-    selected_gender=st.sidebar.multiselect("Gender categories",genders,default=genders)
+    selected_gender=st.sidebar.multiselect("Gender categories",genders,default=genders,key="healthcare_genders")
     data=df.loc[df["age"].astype(str).isin(selected_age)&df["gender"].astype(str).isin(selected_gender)]
     if data.empty: st.warning("No encounters match these filters. Reset or widen the selection.");return
     c=st.columns(4);c[0].metric("Eligible encounters",f"{len(data):,}");c[1].metric("30-day readmission",f"{data['readmit_30d'].mean():.1%}");c[2].metric("Median stay",f"{data['time_in_hospital'].median():.0f} days");c[3].metric("A1C recorded",f"{data['A1Cresult'].notna().mean():.1%}")
@@ -173,9 +183,10 @@ def sports_page()->None:
     try: games=load_table("datasets/processed/sports/team_games.csv");players=load_table("datasets/processed/sports/player_seasons.csv")
     except Exception as exc: st.error(str(exc));return
     st.sidebar.subheader("Team and season filters")
+    reset_filters(domain,("sports_season","sports_franchise","sports_player_season"))
     years=sorted(games["year_id"].dropna().astype(int).unique())
-    season=st.sidebar.select_slider("Season range",options=years,value=(years[0],years[-1]))
-    franchises=sorted(games["fran_id"].dropna().unique().tolist());franchise=st.sidebar.selectbox("Franchise",["All franchises"]+franchises)
+    season=st.sidebar.select_slider("Season range",options=years,value=(years[0],years[-1]),key="sports_season")
+    franchises=sorted(games["fran_id"].dropna().unique().tolist());franchise=st.sidebar.selectbox("Franchise",["All franchises"]+franchises,key="sports_franchise")
     selected=games.loc[games["year_id"].between(*season)]
     if franchise!="All franchises": selected=selected.loc[selected["fran_id"].eq(franchise)]
     if selected.empty: st.warning("No team-games match these filters. Reset or widen the season range.");return
@@ -183,7 +194,7 @@ def sports_page()->None:
     annual=selected.groupby("year_id",as_index=False).agg(games=("win","size"),win_rate=("win","mean"),mean_margin=("margin","mean"))
     st.plotly_chart(px.line(annual,x="year_id",y="win_rate",markers=True,title="Win rate over selected seasons",labels={"year_id":"Season","win_rate":"Team-game win rate"}),width="stretch")
     st.subheader("Player-season ratings (separate source and grain)")
-    player_years=sorted(players["season"].dropna().astype(int).unique());player_season=st.selectbox("Player rating season",player_years,index=len(player_years)-1)
+    player_years=sorted(players["season"].dropna().astype(int).unique());player_season=st.selectbox("Player rating season",player_years,index=len(player_years)-1,key="sports_player_season")
     top=players.loc[players["season"].eq(player_season)].nlargest(15,"raptor_total")
     st.plotly_chart(px.bar(top.sort_values("raptor_total"),x="raptor_total",y="player_name",orientation="h",title=f"Top RAPTOR total ratings: {player_season}",labels={"raptor_total":"Publisher-defined estimate","player_name":"Player"}),width="stretch")
     st.caption("Team-game win rates and player-season ratings are reported separately. The Elo source ends in 2015; RAPTOR methods vary by era.")
@@ -195,11 +206,12 @@ def finance_page()->None:
     try: df=load_table("datasets/processed/finance/daily_prices_and_returns.csv",("date",))
     except Exception as exc: st.error(str(exc));return
     st.sidebar.subheader("Price history filters")
+    reset_filters(domain,("finance_symbols","finance_dates"))
     symbols=sorted(df["symbol"].dropna().astype(str).unique().tolist())
     default=symbols[:min(8,len(symbols))]
-    selected=st.sidebar.multiselect("Symbols",symbols,default=default)
+    selected=st.sidebar.multiselect("Symbols",symbols,default=default,key="finance_symbols")
     start,end=df["date"].min().date(),df["date"].max().date()
-    dates=st.sidebar.date_input("Date range",value=(start,end),min_value=start,max_value=end)
+    dates=st.sidebar.date_input("Date range",value=(start,end),min_value=start,max_value=end,key="finance_dates")
     if len(dates)!=2: st.info("Choose a start and end date.");return
     data=df.loc[df["symbol"].isin(selected)&df["date"].between(pd.Timestamp(dates[0]),pd.Timestamp(dates[1]))]
     if data.empty: st.warning("No prices match these filters. Reset or widen the selection.");return
@@ -218,11 +230,13 @@ def ecommerce_page()->None:
     try: df=load_table("datasets/processed/ecommerce/sessions.csv")
     except Exception as exc: st.error(str(exc));return
     st.sidebar.subheader("Session filters")
+    reset_filters(domain,("ecommerce_months","ecommerce_visitors","ecommerce_timing"))
     month_order={"Jan":1,"Feb":2,"Mar":3,"Apr":4,"May":5,"June":6,"Jun":6,"Jul":7,"Aug":8,"Sep":9,"Oct":10,"Nov":11,"Dec":12}
     months=sorted(df["Month"].dropna().unique().tolist(),key=lambda x:month_order.get(x,99))
-    selected_month=st.sidebar.multiselect("Sample months",months,default=months)
-    visitor=st.sidebar.multiselect("Visitor type",sorted(df["VisitorType"].dropna().unique()),default=sorted(df["VisitorType"].dropna().unique()))
-    weekend=st.sidebar.selectbox("Timing",["All","Weekday","Weekend"])
+    selected_month=st.sidebar.multiselect("Sample months",months,default=months,key="ecommerce_months")
+    visitor_types=sorted(df["VisitorType"].dropna().unique())
+    visitor=st.sidebar.multiselect("Visitor type",visitor_types,default=visitor_types,key="ecommerce_visitors")
+    weekend=st.sidebar.selectbox("Timing",["All","Weekday","Weekend"],key="ecommerce_timing")
     data=df.loc[df["Month"].isin(selected_month)&df["VisitorType"].isin(visitor)]
     if weekend!="All": data=data.loc[data["Weekend"].eq(weekend=="Weekend")]
     if data.empty: st.warning("No sessions match these filters. Reset or widen the selection.");return
@@ -238,6 +252,8 @@ st.markdown("""<style>
 :root { color-scheme: light; }
 section[data-testid="stSidebar"] { border-right: 1px solid #CBD5E1; }
 div[data-testid="stMetric"] { background:#F8FAFC; border:1px solid #CBD5E1; padding:1rem; border-radius:.55rem; }
+div[data-testid="stMetricLabel"] { color:#475569 !important; }
+div[data-testid="stMetricValue"] { color:#0F172A !important; }
 :focus-visible { outline: 3px solid #1D4ED8 !important; outline-offset:2px !important; }
 </style>""",unsafe_allow_html=True)
 st.sidebar.title("Portfolio")

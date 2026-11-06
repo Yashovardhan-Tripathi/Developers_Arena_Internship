@@ -100,15 +100,28 @@ def render(domain: str, title: str) -> Path:
 
         fig=plt.figure(figsize=(8.27,11.69),facecolor="white");page_header(fig,"Recommendations and limitations")
         recommendation=(PROJECT_ROOT/"recommendations"/f"{domain}.md").read_text(encoding="utf-8")
+        sections=[]
+        heading=None
         body=[]
         for line in recommendation.splitlines():
-            if line.startswith("#"):
-                body.append(line.lstrip("# ").upper())
-            elif line.startswith("## "):
-                body.append("\n"+line[3:].upper())
+            if line.startswith("## "):
+                if heading:
+                    sections.append((heading," ".join(body)))
+                heading=line[3:].strip()
+                body=[]
+            elif line.startswith("#"):
+                continue
             elif line.strip():
-                body.append("•  "+line.strip() if line.startswith("- ") else line.strip())
-        fig.text(.09,.85,wrap("\n".join(body),100),fontsize=10.2,va="top",linespacing=1.45,color="#0F172A")
+                body.append(line.strip().removeprefix("- "))
+        if heading:
+            sections.append((heading," ".join(body)))
+        y=.84
+        for heading,text in sections:
+            wrapped=wrap(text,100)
+            fig.text(.09,y,heading.upper(),fontsize=9,weight="bold",color="#1D4ED8",va="top")
+            y-=.032
+            fig.text(.09,y,wrapped,fontsize=10.2,va="top",linespacing=1.35,color="#0F172A")
+            y-=(wrapped.count("\n")+1)*.021+.045
         source_lines=[]
         for index,source in enumerate(load_sources(domain),start=1):
             ref=source["doi_or_version"] or source["source_url"]

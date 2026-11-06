@@ -1,8 +1,8 @@
 # Product Requirements Document
 
-Status: Implementation and integration underway; final acceptance remains open.
+Status: Local implementation and required acceptance checks complete; handoff recorded. Direct screen-reader assessment was not performed.
 Source: User-supplied Complete Data Analysis Portfolio brief.
-Last updated: 2026-11-06
+Last updated: 2026-11-07
 
 ## 1. Purpose
 
@@ -90,9 +90,9 @@ GitHub publication is a later action requiring an explicit user instruction; pre
 | Sample output numbers | Illustrations only; never copy into findings without computed evidence |
 | Dataset size | No mandatory minimum; the sample 5.2 million records is not an acceptance criterion |
 | Folder layouts differ in brief | Use domain notebooks with centralized datasets, reports, and visualization artifacts |
-| Tools | pandas required; Streamlit and Plotly proposed for dashboard; final stack remains provisional |
-| Datasets | Not selected; assess coverage, license, quality, and practical download size first |
-| Presentation format | PowerPoint or another user-approved portable slide format; choose before authoring |
+| Tools | pandas, Streamlit, Plotly, Jupyter, Matplotlib, and scikit-learn are selected and pinned in `requirements.txt` |
+| Datasets | Five documented public-source snapshots selected; provenance, usage notes, hashes, and local retrieval paths are in the catalog and data dictionary |
+| Presentation format | PowerPoint (`presentation/portfolio_presentation.pptx`) selected and generated |
 
 ## 9. Out of scope unless separately requested
 

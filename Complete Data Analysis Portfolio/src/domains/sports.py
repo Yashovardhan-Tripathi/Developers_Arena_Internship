@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 from src.data_io import load_raw
-from src.domains.common import PALETTE, add_metric, apply_style, chart, finish_domain, save_chart, write_processed_table, write_table
+from src.domains.common import PALETTE, add_metric, apply_style, chart, finish_domain, format_percent, save_chart, write_processed_table, write_table
 
 
 DOMAIN="sports"
@@ -83,7 +83,7 @@ def build()->dict[str,object]:
         add_metric("qualified_raptor_player_seasons",int(len(qualified)),"player-seasons","Player-season records with at least 1,000 possessions."),
         add_metric("raptor_players_2022",int(rap.loc[rap["season"].eq(2022),"player_id"].nunique()),"players","Distinct player IDs in the 2022 RAPTOR source season."),
     ]
-    headline=f"The non-copy NBA Elo archive contains {games_n:,} team-games ({start}–{end}); on the final three seasons, source forecast accuracy was {acc:.1%} with Brier score {brier:.3f}."
+    headline=f"The non-copy NBA Elo archive contains {games_n:,} team-games ({start}–{end}); on the final three seasons, source forecast accuracy was {format_percent(acc)} with Brier score {brier:.3f}."
     recommendation="Use the source probabilities as a historical calibration reference only. Before applying forecasting to current games, retrain or validate on current data and a strictly chronological holdout, then compare calibration and Brier score with a simple baseline."
     report=f"""# Sports analysis — source narrative
 
@@ -97,7 +97,7 @@ The team analysis uses one non-copy team perspective per NBA game from the FiveT
 
 ## Statistical and predictive assessment
 
-The source's pregame Elo probability is evaluated on the final three archive seasons ({last_season-2}–{last_season}), chronologically held out: accuracy {acc:.1%}, Brier score {brier:.4f}, mean predicted win chance {forecast_mean:.3f}, observed win fraction {obs_holdout:.3f}. This is a historical assessment of the published forecast, not a newly trained predictive model. RAPTOR rankings require caution because methodology varies across eras.
+The source's pregame Elo probability is evaluated on the final three archive seasons ({last_season-2}–{last_season}), chronologically held out: accuracy {format_percent(acc)}, Brier score {brier:.4f}, mean predicted win chance {forecast_mean:.3f}, observed win fraction {obs_holdout:.3f}. This is a historical assessment of the published forecast, not a newly trained predictive model. RAPTOR rankings require caution because methodology varies across eras.
 
 ## Recommendation
 

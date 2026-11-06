@@ -1,7 +1,7 @@
 # Project Phases
 
-Status: Phases 1–8 implementation artifacts prepared; Phase 9 acceptance in progress.
-Last updated: 2026-11-06
+Status: Phases 1–9 complete for local delivery; direct screen-reader assessment was not performed.
+Last updated: 2026-11-07
 
 ## Execution model
 
@@ -12,15 +12,15 @@ Each phase records inputs, work, deliverables, and exit criteria. A phase starts
 | Phase | Scope | Dependency | Initial status |
 | --- | --- | --- | --- |
 | 0 | Planning baseline | Supplied brief | Complete |
-| 1 | Dataset selection and project foundation | User instruction received 2026-11-04 | Artifacts complete; fresh-kernel check open |
-| 2 | Sales analysis | Phase 1 and suitable sales data | Analysis and deliverables generated; final validation open |
-| 3 | Healthcare analysis | Phase 1 and suitable healthcare data | Analysis and deliverables generated; final validation open |
-| 4 | Sports analysis | Phase 1 and suitable sports data | Analysis and deliverables generated; final validation open |
-| 5 | Financial analysis | Phase 1 and suitable finance data | Analysis and deliverables generated; final validation open |
-| 6 | E-commerce analysis | Phase 1 and suitable e-commerce data | Analysis and deliverables generated; final validation open |
-| 7 | Unified dashboard | Stable derived data contracts | Implemented; browser checks in progress |
-| 8 | Portfolio reports and presentation | Validated domain results | Generated; final artifact checks open |
-| 9 | Final validation and handoff | All deliverables prepared | In progress |
+| 1 | Dataset selection and project foundation | User instruction received 2026-11-04 | Complete; sources, contracts, root resolution, and clean-environment integration verified |
+| 2 | Sales analysis | Phase 1 and suitable sales data | Complete; analysis, outputs, notebook, report, and recommendations validated |
+| 3 | Healthcare analysis | Phase 1 and suitable healthcare data | Complete; analysis, outputs, notebook, report, and recommendations validated |
+| 4 | Sports analysis | Phase 1 and suitable sports data | Complete; analysis, outputs, notebook, report, and recommendations validated |
+| 5 | Financial analysis | Phase 1 and suitable finance data | Complete; analysis, outputs, notebook, report, and recommendations validated |
+| 6 | E-commerce analysis | Phase 1 and suitable e-commerce data | Complete; analysis, outputs, notebook, report, and recommendations validated |
+| 7 | Unified dashboard | Stable derived data contracts | Complete; filters, reset, no-match/error recovery, keyboard, and responsive checks passed. Direct screen-reader evaluation is optional follow-up. |
+| 8 | Portfolio reports and presentation | Validated domain results | Complete; all report and slide pages visually reviewed; selected headline and recommendation cross-check passed |
+| 9 | Final validation and handoff | All deliverables prepared | Complete; clean rebuild, artifact/link checks, project-scoped Git status, diff check, and handoff evidence recorded. No publication occurred. |
 
 ## Phase 0 — Planning baseline
 
@@ -45,11 +45,11 @@ Work:
 5. Create the needed folder structure, environment instructions, dependency file, and data catalog.
 6. Establish source schemas, shared output contracts, chart inventory, and initial reproducible loading/cleaning helpers.
 
-Progress on 2026-11-04: all five domains have downloaded inputs and local schema/quality profiles; sports has separate team-game Elo and player-season RAPTOR sources. SHA-256, byte sizes, row counts, columns, blank/literal-unknown counts, source terms, and limitations are in `datasets/catalog.csv`, `datasets/README.md`, and `docs/data_dictionary.md`. Root resolution, raw/processed I/O, quality/statistics/chart helpers, metric/chart schema validators, and phase-aware build/validation CLIs now exist. The clean `.venv` is installed and `pip check` passes. Nested root logic passed from a normal Python process, but Jupyter kernel/nbconvert execution hit a Windows DLL relocation/stall and remains unverified. The latest shared contract changes have not been runtime-validated. Full evidence is in `docs/validation.md`. No domain analysis has started. A recovery snapshot is recorded at `.checkpoints/S1-before-shared-contracts-2026-11-04/` (raw data excluded and preserved separately).
+Progress across implementation: all five domains have downloaded inputs and local schema/quality profiles; sports has separate team-game Elo and player-season RAPTOR sources. SHA-256, byte sizes, row counts, columns, blank/literal-unknown counts, source terms, and limitations are in `datasets/catalog.csv`, `datasets/README.md`, and `docs/data_dictionary.md`. Root resolution, raw/processed I/O, quality/statistics/chart helpers, metric/chart schema validators, and phase-aware build/validation CLIs have been used in the complete build. Both existing and separately recreated environments execute all notebooks. Full evidence is in `docs/validation.md`.
 
 Deliverables: dataset catalog, retrieval guidance, schema notes, initial setup documentation, and working preparation path.
 
-Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. **Current status:** datasets, shared contracts, CLI interfaces, and domain outputs exist. The fresh-kernel portion of the verification gate remains open due to Windows Jupyter kernel startup behavior; see `docs/validation.md`.
+Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. **Current status:** dataset selection, shared contracts, CLI interfaces, nested root resolution, clean environment setup, and fresh-kernel notebook execution passed; see `docs/validation.md`.
 
 ## Common completion checklist for Phases 2–6
 
@@ -139,13 +139,13 @@ Work: reproduce setup, run all notebooks and necessary tests, inspect dashboard 
 
 Deliverables: completed acceptance matrix, validation log, updated project memory, and handoff notes.
 
-## Current implementation checkpoint — 2026-11-06
+## Current implementation checkpoint — 2026-11-07
 
 - Generated five domain notebooks, metrics, processed tables, chart data, report narratives, five chart files and manifests per domain, recommendation notes, and five domain PDFs.
 - Generated the 25-chart inventory, portfolio summary notebook, executive-summary PDF, eight-slide PowerPoint, and Streamlit dashboard.
 - Browser-observed the overview and the five domain views; targeted KPI and chart text are recorded in `docs/acceptance_matrix.md` and `docs/validation.md`.
 - Refreshed e-commerce month ordering and its notebook/report after recognizing that this dataset spells June in full.
-- Remaining before final acceptance: fresh-kernel execution, saved dashboard screenshots, visual inspection of remaining PDF/slide pages, broader filter/keyboard/viewport checks, and final link consistency review.
+- Clean-environment end-to-end reproduction completed: pinned dependencies installed, five builds, six notebooks, five reports, and artifact validation passed. Filter/reset, no-match/reset, missing/malformed-input recovery, keyboard paths, and responsive checks were exercised. Selected cross-artifact headline and recommendation checks passed after fixing sports percentage rounding. All report and presentation pages have been visually inspected; the 42-file Markdown link scan passed. Direct screen-reader assessment was not performed and is not a release gate.
 
 Exit: every required deliverable is verified or explicitly identified as outstanding. Prepare repository contents for submission. Commit, push, publication, or deployment occurs only when separately authorized.
 

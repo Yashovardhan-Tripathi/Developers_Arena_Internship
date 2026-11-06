@@ -1,7 +1,7 @@
 # Project Working Rules
 
 Status: Active implementation rules.
-Last updated: 2026-11-04
+Last updated: 2026-11-07
 
 ## 1. Authorization and scope
 
@@ -19,7 +19,7 @@ Last updated: 2026-11-04
 - Use `PRD.md` as the requirement baseline and `Phases.md` as the execution sequence.
 - Treat `architecture.md` and `Design.md` as proposed specifications until implemented and validated.
 - Record material choices and deviations in `Memory.md`, then update affected planning documents.
-- Resolve contradictions openly. Current planning assumptions are 25+ charts, all five domains, and one unified local dashboard.
+- Resolve contradictions openly. Current scope is 25+ charts, all five domains, and one unified local dashboard; the selected implementation uses Streamlit/Plotly and a PowerPoint presentation.
 - Do not present a proposed file, tool, feature, or result as already implemented.
 - Use small, reviewable changes. Avoid unrelated refactoring and unnecessary frameworks.
 

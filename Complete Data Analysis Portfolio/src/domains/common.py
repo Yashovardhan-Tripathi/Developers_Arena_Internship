@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,13 @@ from src.visualization import save_figure
 
 
 PALETTE = ("#1D4ED8", "#0F766E", "#B45309", "#7C3AED", "#BE123C", "#475569")
+
+
+def format_percent(value: float, places: int = 1) -> str:
+    """Format a proportion with explicit half-up rounding for consistent reports."""
+    quantum = Decimal("1").scaleb(-places)
+    percent = (Decimal(str(value)) * 100).quantize(quantum, rounding=ROUND_HALF_UP)
+    return f"{percent:.{places}f}%"
 
 
 def read_source_catalog() -> dict[str, dict[str, str]]:

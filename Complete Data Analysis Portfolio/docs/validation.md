@@ -1,27 +1,55 @@
 # Validation log
 
-## 2026-11-06 — Integration and submission artifacts
+## 2026-11-07 — Final artifact review and acceptance checkpoint
 
 ### Passed
 
 - `.venv\Scripts\python.exe -m pip check`: no broken requirements found.
-- `.venv\Scripts\python.exe -m compileall -q src scripts dashboard`: completed successfully.
-- `python scripts/validate_artifacts.py --all --submission`: all required paths present; all five metric and chart contracts valid; exit code 0. This checks paths and schemas, not all visual or runtime acceptance criteria.
-- `nbformat.validate` passed for the five domain notebooks and `portfolio_summary.ipynb`. Each has one code cell with captured in-process execution output.
+- `.venv\Scripts\python.exe -m compileall -q src scripts dashboard`: completed successfully after the final documentation updates.
+- `.venv\Scripts\python.exe scripts/validate_artifacts.py --all --submission`: all required paths present; all five metric and chart contracts valid; exit code 0 on the final recheck. This checks paths and schemas, not all visual or runtime acceptance criteria.
+- `nbformat.validate` passed for the five domain notebooks and `portfolio_summary.ipynb`; all six contain captured fresh-kernel execution outputs.
 - Inventory contains 25 unique chart IDs, and all referenced image files exist.
 - All five domain PDFs have valid PDF signatures and seven pages each; `executive_summary.pdf` has a valid signature and three pages. The PowerPoint archive contains eight slides. These are structural checks only.
 - Browser review of the local Streamlit app confirmed overview plus all five domain pages render with filters and charts. Observed domain examples: sales gross sales GBP 212,242 under default filters; 100,124 eligible healthcare encounters and 11.3% readmission; 63,157 sports team-game records; 1,762 finance dates; e-commerce session conversion charts.
 - E-commerce month ordering now explicitly recognizes the source's full spelling `June`; the domain builder, notebook, and report were refreshed.
+- Visual checks caught and corrected overlapping charts in the executive-summary evidence page, footer crowding on its first page, and decimal display for proportion metrics in reports and summary outputs. All five report covers, all 25 report chart pages, all five recommendation/source pages, and all three executive-summary pages were reviewed after rendering; no overlap or clipping remained in those inspected pages.
+- Finance dashboard filter behavior was observed: removing one selected symbol changed the selected count from 8 to 7 while retaining all 1,762 observed dates.
+- Saved six desktop dashboard screenshots (overview plus five domains) and one 390 × 844 mobile sports screenshot under `docs/screenshots/` after setting the Streamlit theme to the documented light palette. KPI text is readable. At mobile width the document remains 390 pixels wide, cards stack, and chart content is visible after closing the navigation sidebar.
+- Keyboard check: Tab focuses the sidebar radio group, then ArrowDown changes the selected page from healthcare to sports and updates its content.
+- Local Markdown link check passed for all 19 Markdown files in scope after `docs/diagrams.md` was added.
+- PowerPoint structural review confirmed eight slides, slide text extracted for review, and all text boxes within slide bounds. All slides were visually reviewed in PowerPoint's slide sorter; no clipped or out-of-bounds slide content was apparent at review scale.
+- The nested fixture check `scripts/verify_notebook_contract.py` passed when run with elevated access: “Nested notebook root and portfolio kernel verified.” The regular restricted invocation had stalled during kernel startup.
+- `.venv\Scripts\python.exe scripts/execute_notebooks.py` completed with exit code 0. The five domain notebooks and portfolio summary all executed in the registered `portfolio` kernel, saved their outputs, and rebuilt the final inventory, five reports, executive summary, and eight-slide presentation. Windows emitted a ZeroMQ Proactor-loop warning during startup, but execution succeeded.
 
-### Still open
+### Clean-environment reproduction (2026-11-07)
 
-- Fresh-kernel execution: `scripts/verify_notebook_contract.py` continued to hang during Jupyter kernel startup in `.venv`; interrupted after over 70 seconds. Captured outputs come from in-process builder execution and must not be presented as a successful fresh-kernel run.
-- Visual inspection covered the five report covers, one representative chart page per domain, and the first two executive-summary pages. Remaining report pages and presentation slides still need review.
-- The overview and five domain pages were observed, but filter changes, empty/error states, keyboard-only navigation, and alternate viewport sizes need review.
-- There are no accepted dashboard screenshot files yet in `docs/screenshots/`; the inspected PDF page previews were stored outside the project workspace.
-- Link consistency and end-to-end reproduction from a clean setup have not been completed.
+- Created a separate ignored `venv` from scratch and installed the pinned `requirements.txt`; `pip check` and `compileall -q src scripts dashboard` passed.
+- `scripts/build_outputs.py --all` regenerated all five domains from the local raw snapshots. The builders completed for sales (40,077 invoices), healthcare (100,124 encounters), sports (63,157 team-games), finance (851,264 security-date rows), and e-commerce (12,330 sessions).
+- `scripts/execute_notebooks.py` executed all five domain notebooks and `portfolio_summary.ipynb` in the clean environment's registered portfolio kernel. `scripts/render_reports.py` regenerated all five reports.
+- `scripts/validate_artifacts.py --all --submission` completed with exit code 0 and reported `READY (0 missing paths)`, including valid metric and chart contracts for each domain.
+- The narrative source, recommendation findings, five domain slide headline values, and stored headline metrics were reconciled. This identified a half-rounding mismatch for sports holdout accuracy (66.3% versus 66.4%). A shared decimal half-up formatter now yields 66.4% consistently in the sports narrative, executive summary, and presentation. All six notebooks, reports, executive summary, and presentation were refreshed; final validation, compileall, and `pip check` passed.
+- Local Markdown link validation scanned 42 Markdown files and found no broken relative links.
+- `python -m jupyter kernelspec list` separately raised Windows WinError 623. This did not block the project's execution script: all six kernels launched and notebooks completed. Record this as a system-specific kernelspec listing issue, not a failed reproduction.
+
+### Dashboard filter acceptance (2026-11-07)
+
+- Tested changing and resetting filters on sales, healthcare, sports, finance, and e-commerce. Sports season range changed the team-game count from 63,157 to 62,807; reset restored 63,157.
+- Empty selections on sales, healthcare, finance, and e-commerce produced explicit no-match states; reset restored default values.
+- Responsive layout checks at 1440 × 900, 1024 × 768, and 390 × 844 CSS pixels found no horizontal page overflow. Mobile KPI cards stack vertically.
+- Streamlit AppTest temporarily removed the sports metrics file and confirmed the overview warning and domain recovery error; malformed finance metrics JSON also produced a recoverable domain error. Both files were restored and verified present.
+- Keyboard navigation through the sidebar and sports season slider was verified. Direct screen-reader or other assistive-technology assessment was not performed.
+- Rendered dashboard palette contrast was calculated against its specified backgrounds: main text 17.06:1, secondary text 7.24:1, primary action 6.70:1, positive status 7.13:1, caution status 7.09:1, and error status 6.47:1. Each exceeds WCAG AA's 4.5:1 normal-text threshold. Focus styling is explicitly defined with a 3-pixel visible outline; dashboard controls expose descriptive names in the browser accessibility tree.
+
+### Follow-up outside required acceptance
+
+- Direct screen-reader assessment was not performed. The specified keyboard, visible-focus, descriptive-label, responsive, and text-contrast checks passed; a screen-reader pass may be useful as an additional human review.
 
 The `python` command in some PowerShell sessions resolves to the shared/base environment, whose package set reports unrelated `watchdog` and `numpy` conflicts. Use `.venv\Scripts\python.exe`; the project's own environment passes `pip check`.
+
+### Handoff boundary
+
+- The portfolio folder has no independent `.git` directory; its parent is the repository root. After authorized escalation, `git status --short -- .` showed modified and untracked files only beneath `Complete Data Analysis Portfolio/`; no sibling internship paths appeared. These are local project changes; nothing was committed or pushed.
+- `git diff --check -- 'Complete Data Analysis Portfolio'` completed without whitespace errors. Git printed line-ending notices for files configured to convert LF to CRLF on a future checkout; no normalization change was made.
 
 No publication or deployment was performed.
 

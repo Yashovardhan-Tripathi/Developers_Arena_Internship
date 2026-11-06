@@ -13,6 +13,7 @@ from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR,PP_ALIGN
 from pptx.util import Inches,Pt
+from src.domains.common import format_percent
 
 
 DOMAINS=[("sales","Business sales","gross_line_sales_gbp","Gross line sales"),("healthcare","Healthcare","readmission_within_30d_rate","30-day readmission"),("sports","Sports","elo_holdout_accuracy","Elo holdout accuracy"),("finance","Finance","equal_weight_annualized_price_return","Illustrative annualized price return"),("ecommerce","E-commerce","session_conversion_rate","Session conversion")]
@@ -33,7 +34,7 @@ def rounded_card(slide,x,y,w,h)->None:
 def metric_value(metric:dict)->str:
     val=metric["value"]
     if isinstance(val,float):
-        if "rate" in metric["metric_id"] or "accuracy" in metric["metric_id"]:return f"{val:.1%}"
+        if metric["unit"] in {"proportion", "proportion correct", "annualized proportion", "proportion from peak"} or "rate" in metric["metric_id"] or "accuracy" in metric["metric_id"]:return format_percent(val)
         return f"{val:,.2f}"
     return f"{val:,}" if isinstance(val,int) else str(val)
 

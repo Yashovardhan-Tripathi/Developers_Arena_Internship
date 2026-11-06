@@ -40,7 +40,11 @@ SUBMISSION_REQUIRED = (
     "portfolio_summary.ipynb", "executive_summary.pdf", "presentation/portfolio_presentation.pptx",
     "presentation/outline.md", "visualizations/inventory.csv", "docs/acceptance_matrix.md",
     "docs/methodology.md", "docs/setup.md", "docs/data_dictionary.md", "docs/validation.md",
-    "README.md", "dashboard/app.py",
+    "README.md", "dashboard/app.py", "docs/screenshots/README.md",
+    "docs/screenshots/dashboard-overview.png", "docs/screenshots/dashboard-sales.png",
+    "docs/screenshots/dashboard-healthcare.png", "docs/screenshots/dashboard-sports.png",
+    "docs/screenshots/dashboard-finance.png", "docs/screenshots/dashboard-ecommerce.png",
+    "docs/screenshots/dashboard-sports-mobile.png",
 )
 
 

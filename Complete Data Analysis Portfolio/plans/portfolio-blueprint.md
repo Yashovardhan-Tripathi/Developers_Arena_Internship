@@ -1,9 +1,11 @@
 # Complete Data Analysis Portfolio — Construction Blueprint
 
-Version: 1.2, 2026-11-04. Status: Reviewed construction plan; Phase 1 implementation underway after user authorization on 2026-11-04.
+Version: 1.3, 2026-11-07. Status: Reviewed construction plan; local implementation, required validation, and handoff complete.
 Scope: staged local implementation under the user's instruction to follow the design and workflow. Commit, push, publication, deployment, and paid-service work remain unauthorized.
 
 ## Objective and source of truth
+
+Current status and remaining acceptance work are recorded in the dated checkpoint near the end of this document, `docs/acceptance_matrix.md`, and `docs/validation.md`. Older phase notes below preserve the plan as written at the time and should not be read as current status.
 
 Deliver five reproducible domain projects, five notebooks, five PDF reports, 25+ useful visualizations, recommendations, master notebook, executive summary, slides, documentation, and the planned unified local dashboard. Read `PRD.md`, `Rules.md`, `architecture.md`, `Design.md`, `Phases.md`, and `Memory.md` before each phase. Requirements and proposed components must be distinguished from completed outputs.
 
@@ -86,7 +88,7 @@ Dependencies: user instruction to implement. Phase mapping: Phase 1. Model tier 
 
 Context brief: This portfolio needs five distinct domains and reproducible local outputs. The parent repository contains unrelated internship work; do not change it. Dashboard tools and datasets were provisional at planning time and are now selected for local implementation.
 
-Implementation status (2026-11-04): all five domain inputs are downloaded/profiled, and the local environment, setup files, reusable helpers, metric/chart contracts, and phase-aware CLIs exist. The project-local `.venv` installed pinned requirements and representative data loading passed. Nested root resolution works in ordinary Python; fresh-kernel execution remains blocked by Windows `WinError 623` during Jupyter startup. Shared contract validation was strengthened in source, but no fixture/runtime check has been run for this latest change. `docs/validation.md` records commands and outcomes. S1 remains open pending fresh-kernel verification and contract validation. The project path sits inside a parent repository; current Git status could not be read because the configured worktree path is unavailable in this shell.
+Historical foundation checkpoint (2026-11-04): this note records the then-current state only. Later clean-environment execution and contract validation results are in `docs/validation.md` and the 2026-11-07 checkpoint below. At that time, the project path sat inside a parent repository and Git status could not be read because the configured worktree path was unavailable in that shell.
 
 Owned paths: project-local `requirements.txt`, `.gitignore`, `datasets/README.md`, `datasets/catalog.csv`, `docs/setup.md`, `docs/data_dictionary.md`, initial `src/`, `scripts/`, `tests/`, and output schemas. Do not create dummy reports or pretend scripts have passed.
 

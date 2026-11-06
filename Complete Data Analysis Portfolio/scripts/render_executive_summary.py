@@ -9,6 +9,7 @@ import sys
 import textwrap
 
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+from src.domains.common import format_percent
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -35,7 +36,7 @@ def main()->None:
             y=.70-i*.10
             if isinstance(value,float):
                 if unit in {"proportion", "proportion correct", "annualized proportion", "proportion from peak"}:
-                    shown=f"{value:.1%}"
+                    shown=format_percent(value)
                     unit=""
                 else:
                     shown=f"{value:,.2f}"
