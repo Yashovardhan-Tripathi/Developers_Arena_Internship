@@ -1,5 +1,32 @@
 # Validation log
 
+## 2026-11-06 — Integration and submission artifacts
+
+### Passed
+
+- `.venv\Scripts\python.exe -m pip check`: no broken requirements found.
+- `.venv\Scripts\python.exe -m compileall -q src scripts dashboard`: completed successfully.
+- `python scripts/validate_artifacts.py --all --submission`: all required paths present; all five metric and chart contracts valid; exit code 0. This checks paths and schemas, not all visual or runtime acceptance criteria.
+- `nbformat.validate` passed for the five domain notebooks and `portfolio_summary.ipynb`. Each has one code cell with captured in-process execution output.
+- Inventory contains 25 unique chart IDs, and all referenced image files exist.
+- All five domain PDFs have valid PDF signatures and seven pages each; `executive_summary.pdf` has a valid signature and three pages. The PowerPoint archive contains eight slides. These are structural checks only.
+- Browser review of the local Streamlit app confirmed overview plus all five domain pages render with filters and charts. Observed domain examples: sales gross sales GBP 212,242 under default filters; 100,124 eligible healthcare encounters and 11.3% readmission; 63,157 sports team-game records; 1,762 finance dates; e-commerce session conversion charts.
+- E-commerce month ordering now explicitly recognizes the source's full spelling `June`; the domain builder, notebook, and report were refreshed.
+
+### Still open
+
+- Fresh-kernel execution: `scripts/verify_notebook_contract.py` continued to hang during Jupyter kernel startup in `.venv`; interrupted after over 70 seconds. Captured outputs come from in-process builder execution and must not be presented as a successful fresh-kernel run.
+- Visual inspection covered the five report covers, one representative chart page per domain, and the first two executive-summary pages. Remaining report pages and presentation slides still need review.
+- The overview and five domain pages were observed, but filter changes, empty/error states, keyboard-only navigation, and alternate viewport sizes need review.
+- There are no accepted dashboard screenshot files yet in `docs/screenshots/`; the inspected PDF page previews were stored outside the project workspace.
+- Link consistency and end-to-end reproduction from a clean setup have not been completed.
+
+The `python` command in some PowerShell sessions resolves to the shared/base environment, whose package set reports unrelated `watchdog` and `numpy` conflicts. Use `.venv\Scripts\python.exe`; the project's own environment passes `pip check`.
+
+No publication or deployment was performed.
+
+---
+
 ## 2026-11-04 — Phase 1 foundation
 
 ### Passed

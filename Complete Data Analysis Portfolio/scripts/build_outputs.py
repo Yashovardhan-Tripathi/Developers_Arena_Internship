@@ -10,7 +10,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.contracts import DOMAINS
-from src.domains.base import DomainNotImplementedError, build_domain_outputs
+from src.domains.base import build_domain_outputs, register_builders
+from scripts.merge_chart_inventory import merge as merge_chart_inventory
 
 
 def main() -> int:
@@ -20,13 +21,21 @@ def main() -> int:
     selection.add_argument("--all", action="store_true")
     args = parser.parse_args()
     domains = DOMAINS if args.all else (args.domain,)
+    register_builders()
     failures = 0
     for domain in domains:
         try:
-            build_domain_outputs(domain)
-            print(f"BUILT {domain}")
-        except DomainNotImplementedError as exc:
-            print(f"NOT READY {domain}: {exc}")
+            result = build_domain_outputs(domain)
+            print(f"BUILT {domain}: {result['headline']}")
+        except Exception as exc:
+            print(f"FAILED {domain}: {type(exc).__name__}: {exc}")
+            failures += 1
+    if args.all and failures == 0:
+        try:
+            path = merge_chart_inventory()
+            print(f"MERGED chart inventory: {path.relative_to(PROJECT_ROOT)}")
+        except Exception as exc:
+            print(f"FAILED chart inventory: {type(exc).__name__}: {exc}")
             failures += 1
     return 2 if failures else 0
 

@@ -1,8 +1,8 @@
 # Product Requirements Document
 
-Status: Implementation underway; Phase 1 foundation and dataset selection in progress.
+Status: Implementation and integration underway; final acceptance remains open.
 Source: User-supplied Complete Data Analysis Portfolio brief.
-Last updated: 2026-11-04
+Last updated: 2026-11-06
 
 ## 1. Purpose
 

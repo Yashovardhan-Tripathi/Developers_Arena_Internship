@@ -21,8 +21,12 @@ Read [`../datasets/README.md`](../datasets/README.md) and `../datasets/catalog.c
 
 ## Project root and notebooks
 
-Run commands from the repository root. Notebooks will use a small root-resolution helper based on locating `PRD.md`, so nested notebooks can import the project package and address data/output directories consistently. The expected kernel is the Python environment used to install `requirements.txt`; kernel metadata and `sys.executable` must be checked during each fresh-kernel run. This contract has not yet been verified with a nested fixture notebook.
+Run commands from the repository root. Notebooks use a root-resolution helper based on locating `PRD.md`, so nested notebooks can import the project package and address data/output directories consistently. The expected kernel is the Python environment used to install `requirements.txt`; kernel metadata and `sys.executable` must be checked during each fresh-kernel run. The current Windows environment has not yet completed a fresh-kernel notebook execution; see [`validation.md`](validation.md).
 
 ## Preparation status
 
-The package set is installed and checked in the project-local `.venv` using Python 3.13.9. The portfolio kernel is registered under `.venv/share/jupyter/kernels/portfolio`. The nested fixture execution remains to be verified; no analysis outputs or dataset findings are available yet.
+The package set is installed and checked in the project-local `.venv` using Python 3.13.9. The portfolio kernel is registered under `.venv/share/jupyter/kernels/portfolio`. Domain builders have produced the current portfolio outputs; they were also called by notebook code cells in-process. This is useful execution evidence but does not replace the pending fresh-kernel check.
+
+## Dashboard
+
+Run `python -m streamlit run dashboard/app.py` from the project root. The overview and five domain views read the generated `outputs/` and `visualizations/` artifacts. Browser review is recorded in [`acceptance_matrix.md`](acceptance_matrix.md); complete keyboard and responsive review before marking the UI fully accepted.

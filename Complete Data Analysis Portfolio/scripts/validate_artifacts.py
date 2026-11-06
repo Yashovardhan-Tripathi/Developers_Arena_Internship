@@ -17,28 +17,30 @@ from src.contracts import DOMAINS, validate_chart_rows, validate_metrics_documen
 DOMAIN_REQUIRED = {
     "sales": (
         "project1_sales_analysis/analysis.ipynb", "outputs/sales/metrics.json",
-        "visualizations/sales/manifest.csv", "reports/source/sales.md", "recommendations/sales.md",
+        "visualizations/sales/manifest.csv", "reports/source/sales.md", "reports/project_sales_report.pdf", "recommendations/sales.md",
     ),
     "healthcare": (
         "project2_healthcare_analysis/analysis.ipynb", "outputs/healthcare/metrics.json",
-        "visualizations/healthcare/manifest.csv", "reports/source/healthcare.md", "recommendations/healthcare.md",
+        "visualizations/healthcare/manifest.csv", "reports/source/healthcare.md", "reports/project_healthcare_report.pdf", "recommendations/healthcare.md",
     ),
     "sports": (
         "project3_sports_analytics/analysis.ipynb", "outputs/sports/metrics.json",
-        "visualizations/sports/manifest.csv", "reports/source/sports.md", "recommendations/sports.md",
+        "visualizations/sports/manifest.csv", "reports/source/sports.md", "reports/project_sports_report.pdf", "recommendations/sports.md",
     ),
     "finance": (
         "project4_financial_analysis/analysis.ipynb", "outputs/finance/metrics.json",
-        "visualizations/finance/manifest.csv", "reports/source/finance.md", "recommendations/finance.md",
+        "visualizations/finance/manifest.csv", "reports/source/finance.md", "reports/project_finance_report.pdf", "recommendations/finance.md",
     ),
     "ecommerce": (
         "project5_ecommerce_analytics/analysis.ipynb", "outputs/ecommerce/metrics.json",
-        "visualizations/ecommerce/manifest.csv", "reports/source/ecommerce.md", "recommendations/ecommerce.md",
+        "visualizations/ecommerce/manifest.csv", "reports/source/ecommerce.md", "reports/project_ecommerce_report.pdf", "recommendations/ecommerce.md",
     ),
 }
 SUBMISSION_REQUIRED = (
     "portfolio_summary.ipynb", "executive_summary.pdf", "presentation/portfolio_presentation.pptx",
-    "visualizations/inventory.csv", "docs/acceptance_matrix.md", "docs/validation.md",
+    "presentation/outline.md", "visualizations/inventory.csv", "docs/acceptance_matrix.md",
+    "docs/methodology.md", "docs/setup.md", "docs/data_dictionary.md", "docs/validation.md",
+    "README.md", "dashboard/app.py",
 )
 
 

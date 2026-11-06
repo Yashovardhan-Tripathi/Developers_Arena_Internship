@@ -1,7 +1,7 @@
 # Project Phases
 
-Status: Phase 1 authorized and underway.
-Last updated: 2026-11-04
+Status: Phases 1–8 implementation artifacts prepared; Phase 9 acceptance in progress.
+Last updated: 2026-11-06
 
 ## Execution model
 
@@ -11,16 +11,16 @@ Each phase records inputs, work, deliverables, and exit criteria. A phase starts
 
 | Phase | Scope | Dependency | Initial status |
 | --- | --- | --- | --- |
-| 0 | Planning baseline | Supplied brief | Drafted for user review |
-| 1 | Dataset selection and project foundation | User instruction received 2026-11-04 | In progress |
-| 2 | Sales analysis | Phase 1 and suitable sales data | Not started |
-| 3 | Healthcare analysis | Phase 1 and suitable healthcare data | Not started |
-| 4 | Sports analysis | Phase 1 and suitable sports data | Not started |
-| 5 | Financial analysis | Phase 1 and suitable finance data | Not started |
-| 6 | E-commerce analysis | Phase 1 and suitable e-commerce data | Not started |
-| 7 | Unified dashboard | Stable derived data contracts | Not started |
-| 8 | Portfolio reports and presentation | Validated domain results | Not started |
-| 9 | Final validation and handoff | All deliverables prepared | Not started |
+| 0 | Planning baseline | Supplied brief | Complete |
+| 1 | Dataset selection and project foundation | User instruction received 2026-11-04 | Artifacts complete; fresh-kernel check open |
+| 2 | Sales analysis | Phase 1 and suitable sales data | Analysis and deliverables generated; final validation open |
+| 3 | Healthcare analysis | Phase 1 and suitable healthcare data | Analysis and deliverables generated; final validation open |
+| 4 | Sports analysis | Phase 1 and suitable sports data | Analysis and deliverables generated; final validation open |
+| 5 | Financial analysis | Phase 1 and suitable finance data | Analysis and deliverables generated; final validation open |
+| 6 | E-commerce analysis | Phase 1 and suitable e-commerce data | Analysis and deliverables generated; final validation open |
+| 7 | Unified dashboard | Stable derived data contracts | Implemented; browser checks in progress |
+| 8 | Portfolio reports and presentation | Validated domain results | Generated; final artifact checks open |
+| 9 | Final validation and handoff | All deliverables prepared | In progress |
 
 ## Phase 0 — Planning baseline
 
@@ -49,7 +49,7 @@ Progress on 2026-11-04: all five domains have downloaded inputs and local schema
 
 Deliverables: dataset catalog, retrieval guidance, schema notes, initial setup documentation, and working preparation path.
 
-Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. Do not mark complete until the nested-notebook/kernel contract, shared output/CLI interfaces, and the phase's verification evidence are complete.
+Exit: all five domains have usable inputs or a clearly resolved replacement; setup and a representative data load have been verified. Do not invent findings to compensate for unsuitable data. **Current status:** datasets, shared contracts, CLI interfaces, and domain outputs exist. The fresh-kernel portion of the verification gate remains open due to Windows Jupyter kernel startup behavior; see `docs/validation.md`.
 
 ## Common completion checklist for Phases 2–6
 
@@ -138,6 +138,14 @@ Exit: reports and slides have been visually inspected; 25+ unique chart inventor
 Work: reproduce setup, run all notebooks and necessary tests, inspect dashboard flows, verify artifact paths and links, inspect tracked-file boundaries, and map PRD requirements to actual evidence.
 
 Deliverables: completed acceptance matrix, validation log, updated project memory, and handoff notes.
+
+## Current implementation checkpoint — 2026-11-06
+
+- Generated five domain notebooks, metrics, processed tables, chart data, report narratives, five chart files and manifests per domain, recommendation notes, and five domain PDFs.
+- Generated the 25-chart inventory, portfolio summary notebook, executive-summary PDF, eight-slide PowerPoint, and Streamlit dashboard.
+- Browser-observed the overview and the five domain views; targeted KPI and chart text are recorded in `docs/acceptance_matrix.md` and `docs/validation.md`.
+- Refreshed e-commerce month ordering and its notebook/report after recognizing that this dataset spells June in full.
+- Remaining before final acceptance: fresh-kernel execution, saved dashboard screenshots, visual inspection of remaining PDF/slide pages, broader filter/keyboard/viewport checks, and final link consistency review.
 
 Exit: every required deliverable is verified or explicitly identified as outstanding. Prepare repository contents for submission. Commit, push, publication, or deployment occurs only when separately authorized.
 
