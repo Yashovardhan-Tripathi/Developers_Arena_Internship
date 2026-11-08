@@ -141,7 +141,7 @@ Deliverables: completed acceptance matrix, validation log, updated project memor
 
 ## Current implementation checkpoint — 2026-11-07
 
-- Generated five domain notebooks, metrics, processed tables, chart data, report narratives, five chart files and manifests per domain, recommendation notes, and five domain PDFs.
+- Generated five domain notebooks, metrics, processed tables, chart data, report narratives, five chart files and manifests per domain, recommendation notes, and five domain PDFs .
 - Generated the 25-chart inventory, portfolio summary notebook, executive-summary PDF, eight-slide PowerPoint, and Streamlit dashboard.
 - Browser-observed the overview and the five domain views; targeted KPI and chart text are recorded in `docs/acceptance_matrix.md` and `docs/validation.md`.
 - Refreshed e-commerce month ordering and its notebook/report after recognizing that this dataset spells June in full.
