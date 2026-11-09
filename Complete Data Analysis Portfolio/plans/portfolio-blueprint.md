@@ -78,7 +78,7 @@ Validation levels are explicitly separate:
 
 Notebook execution contract: S1 must document the selected environment/kernel and a tested project-root resolution strategy. Each nested notebook resolves the root by finding this project's `PRD.md` plus `src/`, makes shared imports available, and resolves data/output paths from that root rather than the kernel's starting directory. Register a dedicated kernel in an authorized local environment or pass an explicitly verified kernel name to nbconvert; update commands in `docs/setup.md`. Verify the contract with a minimal nested fixture notebook before domain work. Notebook metadata alone is not evidence that the kernel matches the active environment.
 
-Recovery contract: before each authorized implementation step, capture existing owned files and a manifest of new paths in a project-local ignored checkpoint (or record a later user-authorized commit as the recovery base). Record its path and date in project memory. The S1 shared-contract work has a recovery snapshot at `.checkpoints/S1-before-shared-contracts-2026-11-04/`; it excludes raw data. Restore only explicitly reviewed owned paths, compare against intervening user edits, preserve raw data, and never automatically delete newly created files. The rollback instructions below refer to this recorded recovery base.
+Recovery contract: before each authorized implementation step, capture existing owned files and a manifest of new paths in a project-local ignored checkpoint (or record a later user-authorized commit as the recovery base). Record its path and date in project memory. The S1 shared-contract work used a temporary recovery snapshot, which was removed during final submission cleanup; it excluded raw data. Restore only explicitly reviewed owned paths, compare against intervening user edits, preserve raw data, and never automatically delete newly created files. The rollback instructions below refer to this recorded recovery base.
 
 Domain contributors own `visualizations/<domain>/manifest.csv` and may add tests under `tests/<domain>/`. Shared tests remain integrator-owned. Each manifest uses the same chart inventory fields defined in architecture.md; S7 merges manifests after checking IDs, paths, purposes, and duplicates.
 
@@ -282,3 +282,5 @@ Adversarial review completed by an independent strongest-model reviewer; see [bl
 - R5: synchronized source-document scope and integrator ownership, with domain-owned manifests/tests.
 
 These are planning checks. Script commands, package compatibility, datasets, and runtime results remain unverified until authorized implementation.
+
+

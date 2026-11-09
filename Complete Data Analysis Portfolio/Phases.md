@@ -101,6 +101,7 @@ Analyze prices, returns, volatility, correlations, and drawdowns. State adjusted
 
 Deliverables: finance notebook, at least five charts, derived outputs, draft report, and analytical recommendations.
 
+
 Exit: common checklist passes; calculation assumptions are reproducible and results do not imply guaranteed investment performance.
 
 ## Phase 6 — E-commerce analytics

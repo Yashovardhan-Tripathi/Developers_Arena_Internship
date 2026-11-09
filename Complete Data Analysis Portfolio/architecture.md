@@ -7,7 +7,7 @@ Last updated: 2026-11-04
 
 Use a local Python analytics workflow with five domain notebooks, reusable preparation and plotting helpers, saved analysis outputs, and a unified dashboard. The dashboard reads validated derived outputs; it should not retrain models during user interactions. No backend service or database is currently required.
 
-Current stack: pandas and NumPy for processing, Matplotlib/Seaborn for static figures, SciPy for statistical methods, scikit-learn for suitable predictive work, and Streamlit/Plotly for the dashboard. Versions are pinned in `requirements.txt` and installed in the project `.venv` as of 2026-11-04. Choose PDF and slide generation tooling during reporting preparation.
+Current stack: pandas and NumPy for processing, Matplotlib/Seaborn for static figures, SciPy for statistical methods, scikit-learn for suitable predictive work, and Streamlit/Plotly for the dashboard. Versions are pinned in `requirements.txt` and verified in project environments during implementation; recreate the environment by following `docs/setup.md`. Choose PDF and slide generation tooling during reporting preparation.
 
 ## 2. Proposed directory tree
 
@@ -189,7 +189,9 @@ Check source schemas, important transformations, denominators, totals, split int
 - [Construction Blueprint](plans/portfolio-blueprint.md): ten reviewable steps, dependencies, ownership, proposed verification commands, and recovery protocol.
 - [Blueprint review](plans/blueprint-review.md): independent adversarial findings and author resolutions.
 - [Diagram guide](docs/diagrams.md): architecture, workflow, data flow, offline sequence, and dashboard interaction sequence with source mapping.
-- `.archify/`: authored candidates, standalone HTML diagrams, delivery metadata, and artifact-bound automated browser receipts. These are planning artifacts, not dashboard implementation.
+- Diagram artifacts are summarized in [the diagram guide](docs/diagrams.md); generated design receipts and local checkpoints are excluded from the final handoff.
 - Proposed `visualizations/<domain>/manifest.csv`: domain-owned chart entries merged into shared inventory by the integrator in S7.
 - Proposed `tests/<domain>/`: isolated domain test ownership; shared tests remain integrator-owned.
 - Before real domain work, verify nested-notebook project-root imports and an explicit environment/kernel strategy. Domain, integration, submission, and final acceptance validation have separate readiness levels, defined in the Blueprint.
+
+

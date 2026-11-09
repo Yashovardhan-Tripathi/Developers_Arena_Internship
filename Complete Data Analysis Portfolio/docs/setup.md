@@ -11,7 +11,10 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m ipykernel install --user --name portfolio --display-name "Portfolio (.venv)"
 ```
+
+Run the kernel registration command while the project `.venv` is active. The notebook execution script selects the `portfolio` kernel by name.
 
 Do not install packages into the shared/base environment. Confirm `python --version` and `python -m pip freeze` for a final reproducibility record.
 
