@@ -83,6 +83,8 @@ Deliverables: healthcare notebook, at least five charts, derived outputs, draft 
 
 Exit: common checklist passes; sensitive identifiers are absent and outcome/denominator definitions are documented. No clinical efficacy or causation claims exceed the evidence.
 
+
+
 ## Phase 4 — Sports analytics
 
 Indicative slot: Week 3.
